@@ -1,0 +1,11 @@
+<div>
+<mat-form-field>
+  <input matInput [matDatepicker]="picker" placeholder="Input date of birth"
+         (dateInput)="addEvent('input', $event)">
+         <!-- (dateChange)="addEvent('change', $event)"> -->
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker startView="year"></mat-datepicker>
+</mat-form-field>
+
+<!-- <button mat-stroked-button>Go</button> -->
+</div>
