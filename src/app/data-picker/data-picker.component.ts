@@ -21,9 +21,11 @@ export class DataPickerComponent implements OnInit {
     const month: number = event.value.getMonth() + 1;
     const day: number = event.value.getDate();
 
-   const nc: Code = new Code(day, month, year);
-   const negaitveCodeValue: number[] = nc.getNegativeCode;
-    console.log(negaitveCodeValue);
+   const code: Code = new Code(day, month, year);
+
+    console.log(code.getNegativeCode);
+    console.log(code.getMiddleDigit);
+    console.log(code.getPositiveCode);
     this.events.push(`${type}: ${event.value}`);
   }
 

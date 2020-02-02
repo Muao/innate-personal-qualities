@@ -32,6 +32,10 @@ private calcNegativeCode(): number[] {
   return this.negativeCode = negativeCodeAsNumbers;
 }
 
+private calcPositiveCode(): number[] {
+  return this.positiveCode = this.negativeCode.map((el: number) => Calculator.sumDigitsIn(el + this.middleDigit));
+  }
+
 public get getNegativeCode(): number[] {
   return this.negativeCode;
 }
@@ -40,9 +44,7 @@ public get getPositiveCode(): number[] {
   return this.positiveCode;
 }
 
-private calcPositiveCode(): number[] {
-return this.positiveCode = this.negativeCode.map((el: number) => Calculator.sumDigitsIn(el + this.middleDigit));
+public get getMiddleDigit(): number {
+  return this.middleDigit;
 }
-
-
 }
