@@ -1,3 +1,4 @@
+import { Data } from './services/data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -31,7 +32,7 @@ import { MatInputModule, MatNativeDateModule } from '@angular/material';
     MatDatepickerModule,
     MatFormFieldModule
   ],
-  providers: [],
+  providers: [Data],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
