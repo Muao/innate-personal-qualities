@@ -25,3 +25,20 @@ it('sumDigitsIn returns -3', () => {
   expect(result === -3).toBeTruthy();
 });
 });
+
+describe('stringToNumberArray', () => {
+
+  it('stringToNumberArray is [1,1,1]', () => {
+    const result: number[] = Calculator.stringToNumberArray('111');
+    expect(JSON.stringify(result) === JSON.stringify([1, 1, 1])).toBeTruthy();
+  });
+  it('stringToNumberArray is [1]', () => {
+    const result: number[] = Calculator.stringToNumberArray('1');
+    expect(JSON.stringify(result) === JSON.stringify([1])).toBeTruthy();
+  });
+  it('stringToNumberArray is 0', () => {
+    const result: number[] = Calculator.stringToNumberArray('');
+    expect(JSON.stringify(result) === JSON.stringify([])).toBeTruthy();
+  });
+
+});

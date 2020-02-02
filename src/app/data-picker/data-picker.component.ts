@@ -1,4 +1,4 @@
-import { NegitiveCode } from './../services/NegitiveCode';
+import { Code as Code } from '../services/Code';
 import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material';
 import { Calculator } from '../services/calculator';
@@ -20,9 +20,9 @@ export class DataPickerComponent implements OnInit {
     const year: number = event.value.getFullYear();
     const month: number = event.value.getMonth() + 1;
     const day: number = event.value.getDate();
-// first number of negatives
-   const nc: NegitiveCode = new NegitiveCode(day, month, year);
-   const negaitveCodeValue: string = nc.getFor();
+
+   const nc: Code = new Code(day, month, year);
+   const negaitveCodeValue: number[] = nc.getNegativeCode;
     console.log(negaitveCodeValue);
     this.events.push(`${type}: ${event.value}`);
   }
