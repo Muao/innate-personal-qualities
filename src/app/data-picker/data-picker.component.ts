@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material';
 import { ContourResult } from '../entities/ContourResult';
 import { ContoursProcessor } from '../utilites/ContoursProcessor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-data-picker',
@@ -13,7 +14,7 @@ import { ContoursProcessor } from '../utilites/ContoursProcessor';
 export class DataPickerComponent implements OnInit {
 
   public events: string[] = [];
-  public constructor(private dataService: Data) { }
+  public constructor(private dataService: Data, private router: Router) { }
 
   public ngOnInit(): void {
   }
@@ -34,7 +35,7 @@ export class DataPickerComponent implements OnInit {
     console.log(allContours[0].contourName + ': ' + allContours[0].valueI + ' ' + allContours[0].valueII);
     console.log(allContours[1].contourName + ': ' + allContours[1].valueI + ' ' + allContours[1].valueII);
     console.log(allContours[2].contourName + ': ' + allContours[2].valueI + ' ' + allContours[2].valueII);
-
+    this.router.navigate(['result']);
     this.events.push(`${type}: ${event.value}`);
   }
 

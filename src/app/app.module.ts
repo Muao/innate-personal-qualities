@@ -12,12 +12,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, MatNativeDateModule } from '@angular/material';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     DataPickerComponent,
-    ChartComponent
+    ChartComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,18 @@ import { ChartsModule } from 'ng2-charts';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
-    ChartsModule
+    ChartsModule,
+    RouterModule.forRoot([
+      {
+        path: '', component: DataPickerComponent
+      },
+      {
+        path: 'result', component: ChartComponent
+      },
+      {
+        path: '**', component: NotFoundComponent
+      }
+    ])
 
   ],
   exports: [
