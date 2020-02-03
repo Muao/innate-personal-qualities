@@ -137,7 +137,7 @@ export class Data {
     new Year(2022, 21, 5, 7),
   ];
 
-  private monthes: Month[] = [
+  private months: Month[] = [
     new Month(22, 29, 13, 27, 5), // it's feb of leap year access by zero
     new Month(1, 31, 12, 26, 4),
     new Month(2, 28, 7, 26, 9),
@@ -153,9 +153,9 @@ export class Data {
     new Month(12, 31, 0, 0, 0),
   ];
 
-// fixme divide object to 3 objects by counture : phisics, imotional, intellectual
+// fixme divide object to 3 objects by counture : physics, emotional, intellectual
 // fixme needs to use internationalization by browser settings
-  private phisics: Contour[] = [
+  private physics: Contour[] = [
     new Contour(1, 33, 55, 'сангвиник'),
     new Contour(2, 55, 72, 'сангвиник-холерик'),
     new Contour(3, 15, 65, 'чувствительный холерик'),
@@ -182,7 +182,7 @@ export class Data {
   ];
 
   public getPhysics(index: number): ContourResult {
-    const fromTable: Contour = this.phisics.find((cont: Contour) => cont.index === index);
+    const fromTable: Contour = this.physics.find((cont: Contour) => cont.index === index);
     return new ContourResult('Physics', fromTable.valueI, fromTable.valueII, fromTable.description);
   }
 
@@ -198,7 +198,7 @@ export class Data {
     if (month === 2 && this.isLeapYear(year)) {
       month = 22; // <-- february of leap year
     }
-    return this.monthes.find((monss: Month) => monss.month === month);
+    return this.months.find((monss: Month) => monss.month === month);
   }
 
 }

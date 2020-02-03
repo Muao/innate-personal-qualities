@@ -5,6 +5,7 @@ import { Code as Code } from '../entities/Code';
 import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material';
 import { ContourResult } from '../entities/ContourResult';
+import { ContoursProcessor } from '../utilites/ContoursProcessor';
 
 @Component({
   selector: 'app-data-picker',
@@ -29,28 +30,10 @@ export class DataPickerComponent implements OnInit {
     console.log(code.getNegativeCode);
     console.log(code.getMiddleDigit);
     console.log(code.getPositiveCode);
-    const monthTable: Month = (this.dataService.getMonthes(month, year));
-    const yearTable: Year = (this.dataService.getYear(year));
-    const thirdSell: number = monthTable.haveDays - day;
 
-    let physicsIndex: number = yearTable.rowI + monthTable.rowI + thirdSell;
-    let emotionalIndex: number = yearTable.rowII + monthTable.rowII + thirdSell;
-    let intellectualIndex: number = yearTable.rowIII + monthTable.rowIII + thirdSell;
+    const allContours: ContourResult[] = new ContoursProcessor(this.dataService).getContours(day, month, year);
 
-    while (physicsIndex > 23) {
-      physicsIndex -= 23;
-  }
-  while (emotionalIndex > 28) {
-      emotionalIndex -= 28;
-  }
-  while (intellectualIndex > 33) {
-      intellectualIndex -= 33;
-  }
-
-  const physics: ContourResult = this.dataService.getPhysics(physicsIndex);
-    console.log(physics.valueI + '--> ' + physics.valueII);
-
-    console.log(physicsIndex + " " + emotionalIndex + " " + intellectualIndex);
+    console.log(allContours[0].contourName);
 
     this.events.push(`${type}: ${event.value}`);
   }
