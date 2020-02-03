@@ -153,8 +153,8 @@ export class Data {
     new Month(12, 31, 0, 0, 0),
   ];
 
-// fixme divide object to 3 objects by counture : physics, emotional, intellectual
-// fixme needs to use internationalization by browser settings
+
+// todo needs to use internationalization by browser settings
   private physics: Contour[] = [
     new Contour(1, 33, 55, 'сангвиник'),
     new Contour(2, 55, 72, 'сангвиник-холерик'),
@@ -181,13 +181,86 @@ export class Data {
     new Contour(23, 25, 51, 'меланхолик'),
   ];
 
+  private emotionals: Contour[] = [
+    new Contour(1, 69, 95, 'страстный'),
+    new Contour(2, 75, 27, 'эгоистичный (лидерский)'),
+    new Contour(3, 31, 45, 'эмпатический'),
+    new Contour(4, 62, 77, 'страстный'),
+    new Contour(5, 50, 59, 'эмпатический'),
+    new Contour(6, 44, 68, 'эмпатический'),
+    new Contour(7, 12, 45, 'самоотверженный интергативный'),
+    new Contour(8, 6, 23, 'холодный'),
+    new Contour(9, 81, 54, 'эгоистичный (лидерский)'),
+    new Contour(10, 25, 77, 'самоотверженный интергативный'),
+    new Contour(11, 18, 50, 'самоотверженный интергативный'),
+    new Contour(12, 44, 59, 'эмпатический'),
+    new Contour(13, 25, 68, 'самоотверженный интергативный'),
+    new Contour(14, 50, 77, 'страстный'),
+    new Contour(15, 50, 99, 'страстный'),
+    new Contour(16, 50, 36, 'сентиментальный'),
+    new Contour(17, 50, 41, 'сентиментальный'),
+    new Contour(18, 31, 14, 'холодный'),
+    new Contour(19, 99, 54, 'эгоистичный (лидерский)'),
+    new Contour(20, 44, 32, 'сентиментальный'),
+    new Contour(21, 62, 41, 'сентиментальный'),
+    new Contour(22, 25, 18, 'холодный'),
+    new Contour(23, 69, 59, 'эгоистичный (лидерский)'),
+    new Contour(24, 56, 41, 'сентиментальный'),
+    new Contour(25, 44, 68, 'эмпатический'),
+    new Contour(26, 37, 41, 'холодный'),
+    new Contour(27, 56, 73, 'страстный'),
+    new Contour(28, 44, 73, 'эмпатический'),
+    ];
+
+  private intellectuals: Contour[] = [
+    new Contour(1, 64, 35, 'гармоничный художественный'),
+     new Contour(2, 21, 65, 'дискретный'),
+     new Contour(3, 21, 65, 'дискретный'),
+     new Contour(4, 93, 82, 'сверхпродуктивный'),
+     new Contour(5, 43, 41, 'гармоничный художественный'),
+     new Contour(6, 0, 99, 'дискретный'),
+     new Contour(7, 57, 88, 'продуктивный мыслительный'),
+     new Contour(8, 7, 41, 'прикладной мыслительный'),
+     new Contour(9, 29, 35, 'прикладной смешанный'),
+     new Contour(10, 86, 35, 'гармоничный художественный'),
+     new Contour(11, 29, 82, 'гармоничный мыслительный'),
+     new Contour(12, 86, 41, 'гармоничный художественный'),
+     new Contour(13, 14, 71, 'дискретный'),
+     new Contour(14, 50, 59, 'продуктивный смешанный'),
+     new Contour(15, 78, 65, 'продуктивный художественный'),
+     new Contour(16, 93, 24, 'аналоговый'),
+     new Contour(17, 84, 71, 'продуктивный художественный'),
+     new Contour(18, 29, 41, 'прикладной смешанный'),
+     new Contour(19, 26, 71, 'гармоничный мыслительный'),
+     new Contour(20, 99, 82, 'сверхпродуктивный'),
+     new Contour(21, 7, 76, 'дискретный'),
+     new Contour(22, 14, 35, 'прикладной мыслительный'),
+     new Contour(23, 50, 65, 'продуктивный смешанный'),
+     new Contour(24, 26, 18, 'прикладной смешанный'),
+     new Contour(25, 29, 88, 'гармоничный мыслительный'),
+     new Contour(26, 93, 59, 'продуктивный художественный'),
+     new Contour(27, 57, 82, 'продуктивный мыслительный'),
+     new Contour(28, 29, 29, 'прикладной смешанный'),
+     new Contour(29, 29, 88, 'гармоничный мыслительный'),
+     new Contour(30, 71, 47, 'гармоничный художественный'),
+     new Contour(31, 7, 35, 'прикладной мыслительный'),
+     new Contour(32, 64, 59, 'продуктивный смешанный'),
+     new Contour(33, 29, 82, 'гармоничный мыслительный'),
+    ];
+
   public getPhysics(index: number): ContourResult {
     const fromTable: Contour = this.physics.find((cont: Contour) => cont.index === index);
     return new ContourResult('Physics', fromTable.valueI, fromTable.valueII, fromTable.description);
   }
 
-  public isLeapYear(year: number): boolean {
-    return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
+  public getEmotionals(index: number): ContourResult {
+    const fromTable: Contour = this.emotionals.find((cont: Contour) => cont.index === index);
+    return new ContourResult('Emotionals', fromTable.valueI, fromTable.valueII, fromTable.description);
+  }
+
+  public getIntellectuals(index: number): ContourResult {
+    const fromTable: Contour = this.intellectuals.find((cont: Contour) => cont.index === index);
+    return new ContourResult('Intellectuals', fromTable.valueI, fromTable.valueII, fromTable.description);
   }
 
   public getYear(inputYear: number): Year {
@@ -195,10 +268,14 @@ export class Data {
   }
 
   public getMonthes(month: number, year: number): Month {
-    if (month === 2 && this.isLeapYear(year)) {
+    if (month === 2 && Data.isLeapYear(year)) {
       month = 22; // <-- february of leap year
     }
     return this.months.find((monss: Month) => monss.month === month);
+  }
+
+  private static isLeapYear(year: number): boolean {
+    return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
   }
 
 }

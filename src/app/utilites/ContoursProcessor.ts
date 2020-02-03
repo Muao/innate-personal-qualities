@@ -27,6 +27,8 @@ export class ContoursProcessor {
       intellectualIndex -= 33;
     }
     allContours[0] = this.dataService.getPhysics(physicsIndex);
+    allContours[1] = this.dataService.getEmotionals(emotionalIndex);
+    allContours[2] = this.dataService.getIntellectuals(intellectualIndex);
     return allContours;
   }
 }

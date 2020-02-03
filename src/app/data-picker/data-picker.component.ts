@@ -33,7 +33,9 @@ export class DataPickerComponent implements OnInit {
 
     const allContours: ContourResult[] = new ContoursProcessor(this.dataService).getContours(day, month, year);
 
-    console.log(allContours[0].contourName);
+    console.log(allContours[0].contourName + ': ' + allContours[0].valueI + ' ' + allContours[0].valueII);
+    console.log(allContours[1].contourName + ': ' + allContours[1].valueI + ' ' + allContours[1].valueII);
+    console.log(allContours[2].contourName + ': ' + allContours[2].valueI + ' ' + allContours[2].valueII);
 
     this.events.push(`${type}: ${event.value}`);
   }
