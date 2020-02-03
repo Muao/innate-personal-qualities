@@ -1,0 +1,15 @@
+<p>chart works!</p>
+<div>
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+              [datasets]="radarChartData"
+              [options]="radarChartOptions"
+              [labels]="radarChartLabels"
+              [chartType]="radarChartType"
+              (chartClick)="chartClicked($event)"
+              (chartHover)="chartHovered($event)">
+      </canvas>
+    </div>
+  </div>
+</div>

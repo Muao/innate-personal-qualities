@@ -1,5 +1,3 @@
-import { Year } from '../entities/Year';
-import { Month } from '../entities/Month';
 import { Data } from '../services/data.service';
 import { Code as Code } from '../entities/Code';
 import { Component, OnInit } from '@angular/core';
@@ -39,5 +37,6 @@ export class DataPickerComponent implements OnInit {
 
     this.events.push(`${type}: ${event.value}`);
   }
+
 
 }

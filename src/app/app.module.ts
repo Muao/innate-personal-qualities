@@ -10,11 +10,14 @@ import { DataPickerComponent } from './data-picker/data-picker.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, MatNativeDateModule } from '@angular/material';
+import { ChartComponent } from './chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DataPickerComponent
+    DataPickerComponent,
+    ChartComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { MatInputModule, MatNativeDateModule } from '@angular/material';
     MatDatepickerModule,
     MatFormFieldModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    ChartsModule
 
   ],
   exports: [
