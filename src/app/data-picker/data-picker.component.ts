@@ -1,10 +1,10 @@
-import { Year } from './../services/Year';
-import { Month } from './../services/Month';
-import { Data } from './../services/data.service';
-import { Code as Code } from '../services/Code';
+import { Year } from '../entities/Year';
+import { Month } from '../entities/Month';
+import { Data } from '../services/data.service';
+import { Code as Code } from '../entities/Code';
 import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material';
-import { ContourResult } from '../services/ContourResult';
+import { ContourResult } from '../entities/ContourResult';
 
 @Component({
   selector: 'app-data-picker',

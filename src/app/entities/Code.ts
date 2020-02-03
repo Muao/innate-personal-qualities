@@ -1,4 +1,4 @@
-import { Calculator } from './calculator';
+import { Calculator } from '../services/calculator';
 
 export class Code {
 

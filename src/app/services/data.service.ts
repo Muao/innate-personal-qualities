@@ -1,9 +1,9 @@
-import { Month } from './Month';
+import { Month } from '../entities/Month';
 
 import { Injectable } from '@angular/core';
-import { Year } from './Year';
-import { Contour } from './Contour';
-import { ContourResult } from './ContourResult';
+import { Year } from '../entities/Year';
+import { Contour } from '../entities/Contour';
+import { ContourResult } from '../entities/ContourResult';
 
 @Injectable({
   providedIn: 'root'
