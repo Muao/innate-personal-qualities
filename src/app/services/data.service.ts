@@ -4,12 +4,15 @@ import { Injectable } from '@angular/core';
 import { Year } from '../entities/Year';
 import { Contour } from '../entities/Contour';
 import { ContourResult } from '../entities/ContourResult';
+import {BehaviorSubject} from 'rxjs';
+import {BirthDate} from '../entities/BirthDate';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Data {
 
+  private birthDate: BehaviorSubject<BirthDate> = new BehaviorSubject<BirthDate>(null);
 
   private years: Year[] = [
     new Year(1900, 7, 17, 17),
@@ -272,6 +275,14 @@ export class Data {
       month = 22; // <-- february of leap year
     }
     return this.months.find((monss: Month) => monss.month === month);
+  }
+
+  public getBirthDate(): BehaviorSubject<BirthDate>{
+    return this.birthDate;
+  }
+
+  public setBirthDay(birthDate: BirthDate): void {
+    this.birthDate.next(birthDate);
   }
 
   private static isLeapYear(year: number): boolean {

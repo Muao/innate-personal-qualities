@@ -2,16 +2,17 @@ import { ContourResult } from '../entities/ContourResult';
 import { Month } from '../entities/Month';
 import { Year } from '../entities/Year';
 import { Data } from '../services/data.service';
+import { BirthDate } from '../entities/BirthDate';
 
 export class ContoursProcessor {
 
   public constructor(private dataService: Data) { }
 
-  public getContours(day: number, month: number, year: number): ContourResult[] {
+  public getContours(birthDate: BirthDate): ContourResult[] {
     const allContours: ContourResult[] = [];
-    const monthTable: Month = (this.dataService.getMonthes(month, year));
-    const yearTable: Year = (this.dataService.getYear(year));
-    const thirdSell: number = monthTable.haveDays - day;
+    const monthTable: Month = (this.dataService.getMonthes(birthDate.month, birthDate.year));
+    const yearTable: Year = (this.dataService.getYear(birthDate.year));
+    const thirdSell: number = monthTable.haveDays - birthDate.day;
 
     let physicsIndex: number = yearTable.rowI + monthTable.rowI + thirdSell;
     let emotionalIndex: number = yearTable.rowII + monthTable.rowII + thirdSell;

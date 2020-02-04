@@ -1,4 +1,5 @@
 import { Calculator } from '../utilites/calculator';
+import { BirthDate } from './BirthDate';
 
 export class Code {
 
@@ -10,11 +11,11 @@ export class Code {
   private positiveCode: number[];
   private middleDigit: number;
 
-  public constructor(day: number, month: number, year: number) {
-  this.day = day;
-  this.month = month;
-  this.year = year;
-  this.middleDigit = Calculator.sumDigitsIn(day + month + year);
+  public constructor(birthDate: BirthDate) {
+  this.day = birthDate.day;
+  this.month = birthDate.month;
+  this.year = birthDate.year;
+  this.middleDigit = Calculator.sumDigitsIn(this.day + this.month + this.year);
   this.negativeCode = this.calcNegativeCode();
   this.positiveCode = this.calcPositiveCode();
   }

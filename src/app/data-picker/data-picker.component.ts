@@ -5,6 +5,7 @@ import { MatDatepickerInputEvent } from '@angular/material';
 import { ContourResult } from '../entities/ContourResult';
 import { ContoursProcessor } from '../utilites/ContoursProcessor';
 import { Router } from '@angular/router';
+import {BirthDate} from '../entities/BirthDate';
 
 @Component({
   selector: 'app-data-picker',
@@ -23,18 +24,8 @@ export class DataPickerComponent implements OnInit {
     const year: number = event.value.getFullYear();
     const month: number = event.value.getMonth() + 1;
     const day: number = event.value.getDate();
-
-   const code: Code = new Code(day, month, year);
-
-    console.log(code.getNegativeCode);
-    console.log(code.getMiddleDigit);
-    console.log(code.getPositiveCode);
-
-    const allContours: ContourResult[] = new ContoursProcessor(this.dataService).getContours(day, month, year);
-
-    console.log(allContours[0].contourName + ': ' + allContours[0].valueI + ' ' + allContours[0].valueII);
-    console.log(allContours[1].contourName + ': ' + allContours[1].valueI + ' ' + allContours[1].valueII);
-    console.log(allContours[2].contourName + ': ' + allContours[2].valueI + ' ' + allContours[2].valueII);
+    const birthDate: BirthDate = new BirthDate(day, month, year);
+    this.dataService.setBirthDay(birthDate);
     this.router.navigate(['result']);
     this.events.push(`${type}: ${event.value}`);
   }
