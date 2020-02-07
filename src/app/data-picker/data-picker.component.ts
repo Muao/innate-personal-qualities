@@ -5,7 +5,7 @@ import { MatDatepickerInputEvent } from '@angular/material';
 import { ContourResult } from '../entities/ContourResult';
 import { ContoursProcessor } from '../utilites/ContoursProcessor';
 import { Router } from '@angular/router';
-import {BirthDate} from '../entities/BirthDate';
+import { BirthDate } from '../entities/BirthDate';
 
 @Component({
   selector: 'app-data-picker',

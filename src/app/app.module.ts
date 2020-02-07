@@ -1,3 +1,4 @@
+import { DinamicComponentLoaderService } from './services/dinamic-component-loader.service';
 import { Data } from './services/data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,13 +15,16 @@ import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DataPickerComponent,
     ChartComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
@@ -32,9 +36,10 @@ import { RouterModule } from '@angular/router';
     MatNativeDateModule,
     MatInputModule,
     ChartsModule,
+    MatCheckboxModule,
     RouterModule.forRoot([
       {
-        path: '', component: DataPickerComponent
+        path: '', component: MainPageComponent
       },
       {
         path: 'result', component: ChartComponent
@@ -45,12 +50,15 @@ import { RouterModule } from '@angular/router';
     ])
 
   ],
+  entryComponents: [
+    DataPickerComponent
+  ],
   exports: [
     MatButtonModule,
     MatDatepickerModule,
     MatFormFieldModule
   ],
-  providers: [Data],
+  providers: [Data, DinamicComponentLoaderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
