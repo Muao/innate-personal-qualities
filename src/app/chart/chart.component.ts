@@ -1,5 +1,5 @@
 import { PersonOutputData } from './../entities/PersonOutputData';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Data } from '../services/data.service';
@@ -13,7 +13,8 @@ import { ContoursProcessor } from '../utilites/ContoursProcessor';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, OnDestroy {
+
   public birthDate: BirthDate;
   public radarChartOptions: RadialChartOptions = {
     responsive: true,
@@ -31,9 +32,11 @@ export class ChartComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.dataService.getResults().subscribe((personOutputData: PersonOutputData[]) => {
-      this.personOutputData = personOutputData;
-    });
+    this.personOutputData = this.dataService.personalOutputData;
+
+    // this.dataService.getResults().subscribe((personOutputData: PersonOutputData[]) => {
+    //   this.personOutputData = personOutputData;
+    // }
 
 
     console.log(this.personOutputData.length);
@@ -56,6 +59,10 @@ export class ChartComponent implements OnInit {
   //     //   label: 'User 1'// todo needs getting real user lable
   //     // },
   //   ];
+  }
+
+  public ngOnDestroy(): void {
+    this.dataService.clearPersonalOutputData(); // if go back to Data Page -> old DataPucckerId's no any matter
   }
 
   public chartClicked({event, active}: { event: MouseEvent, active: {}[] }): void {

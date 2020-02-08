@@ -19,8 +19,7 @@ export class Data {
     return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
   }
 
-  private birthDateArray: BirthDate[] = [];
-  private resultData: BehaviorSubject<PersonOutputData[]> = new BehaviorSubject<PersonOutputData[]>(null);
+  private personOutputData: PersonOutputData[] = [];
 
   private years: Year[] = [
     new Year(1900, 7, 17, 17),
@@ -258,7 +257,6 @@ export class Data {
      new Contour(32, 64, 59, 'продуктивный смешанный'),
      new Contour(33, 29, 82, 'гармоничный мыслительный'),
     ];
-  private personOutputData: PersonOutputData[] = [];
 
   public getPhysics(index: number): ContourResult {
     const fromTable: Contour = this.physics.find((cont: Contour) => cont.index === index);
@@ -286,34 +284,31 @@ export class Data {
     return this.months.find((monss: Month) => monss.month === month);
   }
 
-  public putToBirthDayArray(inputBirthDate: BirthDate): void {
+  public pushNewBirthDay(inputBirthDate: BirthDate): void {
+
+    const code: Code = new Code(inputBirthDate);
+
+    const contourResult: ContourResult[] =
+    new ContoursProcessor(this).getContours(inputBirthDate);
+
+    const  newPersonOutputData:  PersonOutputData =
+    new PersonOutputData(code, contourResult, inputBirthDate.dataPickerId);
+
     const sameDatePickerIndex: number =
-    this.birthDateArray.findIndex( (b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
+    this.personOutputData.findIndex((data: PersonOutputData) => (data.dataPickerId === inputBirthDate.dataPickerId));
 
-    if (sameDatePickerIndex !== -1) { // -1 if array haven't the same data picker id
-      this.birthDateArray.splice(sameDatePickerIndex, 1, inputBirthDate);
+    if (sameDatePickerIndex === -1) { // -1 if array haven't the same data picker id
+    this.personOutputData.push(newPersonOutputData);
     } else {
-      this.birthDateArray.push(inputBirthDate);
+    this.personOutputData.splice(sameDatePickerIndex, 1, newPersonOutputData);
     }
-
-    this.personOutputData = []; // remove old data
-
-    this.birthDateArray.forEach((birthDate: BirthDate) => {
-      const code: Code = new Code(birthDate);
-      const contourResult: ContourResult[] = new ContoursProcessor(this).getContours(birthDate);
-      const  personOutputData:  PersonOutputData = new PersonOutputData(code, contourResult);
-      this.personOutputData.push(personOutputData);
-    });
-
-    this.resultData.next(this.personOutputData);
-
-  }
-  public getResults(): BehaviorSubject<PersonOutputData[]> {
-    return this.resultData;
   }
 
-  private getBirthDate(): BirthDate[] {
-    return this.birthDateArray;
+  public get personalOutputData(): PersonOutputData[] {
+    return this.personOutputData;
   }
 
+  public clearPersonalOutputData(): void {
+    this.personOutputData = [];
+  }
 }

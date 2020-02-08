@@ -1,11 +1,6 @@
-import { element } from 'protractor';
 import { Data } from '../services/data.service';
-import { Code as Code } from '../entities/Code';
 import { Component, OnInit } from '@angular/core';
 import { MatDatepickerInputEvent } from '@angular/material';
-import { ContourResult } from '../entities/ContourResult';
-import { ContoursProcessor } from '../utilites/ContoursProcessor';
-import { Router } from '@angular/router';
 import { BirthDate } from '../entities/BirthDate';
 
 @Component({
@@ -27,10 +22,7 @@ export class DataPickerComponent implements OnInit {
     const day: number = event.value.getDate();
     const dataPickerId: string = event.targetElement.id;
     const birthDate: BirthDate = new BirthDate(day, month, year, dataPickerId);
-    this.dataService.putToBirthDayArray(birthDate);
-    // this.router.navigate(['result']);
-    // this.events.push(`${type}: ${event.value}`);
+    this.dataService.pushNewBirthDay(birthDate);
   }
-
 
 }

@@ -1,5 +1,5 @@
 import { DinamicComponentLoaderService } from './../services/dinamic-component-loader.service';
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, OnDestroy {
 
   @ViewChild('dynamic', {read: ViewContainerRef, static: true})
   public viewContainerRef: ViewContainerRef;
@@ -29,8 +29,15 @@ this.appendComponentToBody();
     this.router.navigate(['result']);
   }
 
+  public ngOnDestroy(): void {
+    // how to destory child component, or remove it from container
+  }
+
   private appendComponentToBody(): void {
     this.dinamicComponentLoaderService.setRootViewContainerRef(this.viewContainerRef);
     this.dinamicComponentLoaderService.addDynamicComponent();
   }
+
+
+
 }
