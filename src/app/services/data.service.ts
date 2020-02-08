@@ -1,18 +1,26 @@
+import { PersonOutputData } from './../entities/PersonOutputData';
 import { Month } from '../entities/Month';
 
 import { Injectable } from '@angular/core';
 import { Year } from '../entities/Year';
 import { Contour } from '../entities/Contour';
 import { ContourResult } from '../entities/ContourResult';
-import {BehaviorSubject} from 'rxjs';
-import {BirthDate} from '../entities/BirthDate';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { BirthDate } from '../entities/BirthDate';
+import { Code } from '../entities/Code';
+import { ContoursProcessor } from '../utilites/ContoursProcessor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Data {
 
-  private birthDate: BehaviorSubject<BirthDate> = new BehaviorSubject<BirthDate>(null);
+  private static isLeapYear(year: number): boolean {
+    return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
+  }
+
+  private birthDateArray: BirthDate[] = [];
+  private resultData: BehaviorSubject<PersonOutputData[]> = new BehaviorSubject<PersonOutputData[]>(null);
 
   private years: Year[] = [
     new Year(1900, 7, 17, 17),
@@ -250,6 +258,7 @@ export class Data {
      new Contour(32, 64, 59, 'продуктивный смешанный'),
      new Contour(33, 29, 82, 'гармоничный мыслительный'),
     ];
+  private personOutputData: PersonOutputData[] = [];
 
   public getPhysics(index: number): ContourResult {
     const fromTable: Contour = this.physics.find((cont: Contour) => cont.index === index);
@@ -272,21 +281,39 @@ export class Data {
 
   public getMonthes(month: number, year: number): Month {
     if (month === 2 && Data.isLeapYear(year)) {
-      month = 22; // <-- february of leap year
+      month = 22; // february of leap year
     }
     return this.months.find((monss: Month) => monss.month === month);
   }
 
-  public getBirthDate(): BehaviorSubject<BirthDate>{
-    return this.birthDate;
+  public putToBirthDayArray(inputBirthDate: BirthDate): void {
+    const sameDatePickerIndex: number =
+    this.birthDateArray.findIndex( (b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
+
+    if (sameDatePickerIndex !== -1) { // -1 if array haven't the same data picker id
+      this.birthDateArray.splice(sameDatePickerIndex, 1, inputBirthDate);
+    } else {
+      this.birthDateArray.push(inputBirthDate);
+    }
+
+    this.personOutputData = []; // remove old data
+
+    this.birthDateArray.forEach((birthDate: BirthDate) => {
+      const code: Code = new Code(birthDate);
+      const contourResult: ContourResult[] = new ContoursProcessor(this).getContours(birthDate);
+      const  personOutputData:  PersonOutputData = new PersonOutputData(code, contourResult);
+      this.personOutputData.push(personOutputData);
+    });
+
+    this.resultData.next(this.personOutputData);
+
+  }
+  public getResults(): BehaviorSubject<PersonOutputData[]> {
+    return this.resultData;
   }
 
-  public setBirthDay(birthDate: BirthDate): void {
-    this.birthDate.next(birthDate);
-  }
-
-  private static isLeapYear(year: number): boolean {
-    return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
+  private getBirthDate(): BirthDate[] {
+    return this.birthDateArray;
   }
 
 }

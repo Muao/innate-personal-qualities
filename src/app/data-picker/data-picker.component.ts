@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Data } from '../services/data.service';
 import { Code as Code } from '../entities/Code';
 import { Component, OnInit } from '@angular/core';
@@ -15,7 +16,7 @@ import { BirthDate } from '../entities/BirthDate';
 export class DataPickerComponent implements OnInit {
 
   public events: string[] = [];
-  public constructor(private dataService: Data, private router: Router) { }
+  public constructor(private dataService: Data, ) { }
 
   public ngOnInit(): void {
   }
@@ -24,10 +25,11 @@ export class DataPickerComponent implements OnInit {
     const year: number = event.value.getFullYear();
     const month: number = event.value.getMonth() + 1;
     const day: number = event.value.getDate();
-    const birthDate: BirthDate = new BirthDate(day, month, year);
-    this.dataService.setBirthDay(birthDate);
-    this.router.navigate(['result']);
-    this.events.push(`${type}: ${event.value}`);
+    const dataPickerId: string = event.targetElement.id;
+    const birthDate: BirthDate = new BirthDate(day, month, year, dataPickerId);
+    this.dataService.putToBirthDayArray(birthDate);
+    // this.router.navigate(['result']);
+    // this.events.push(`${type}: ${event.value}`);
   }
 
 

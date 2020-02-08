@@ -1,5 +1,6 @@
 import { DinamicComponentLoaderService } from './../services/dinamic-component-loader.service';
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-page',
@@ -12,7 +13,8 @@ export class MainPageComponent implements OnInit {
   public viewContainerRef: ViewContainerRef;
 
   public constructor(
-    private dinamicComponentLoaderService: DinamicComponentLoaderService
+    private dinamicComponentLoaderService: DinamicComponentLoaderService,
+    private router: Router
       ) { }
 
   public ngOnInit(): void {
@@ -21,6 +23,10 @@ export class MainPageComponent implements OnInit {
 
   public oneMoreButtonHandler(): void {
 this.appendComponentToBody();
+  }
+
+  public calculateButtonHandler(): void {
+    this.router.navigate(['result']);
   }
 
   private appendComponentToBody(): void {

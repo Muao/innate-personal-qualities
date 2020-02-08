@@ -1,3 +1,4 @@
+import { PersonOutputData } from './../entities/PersonOutputData';
 import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartType, RadialChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
@@ -19,42 +20,42 @@ export class ChartComponent implements OnInit {
   };
   public radarChartLabels: Label[] = ['Muladhara', 'Svadhishthana', 'Manipura', 'Anahata', 'Vishuddha', 'Ajna',];
 
-  public radarChartData: ChartDataSets[];
-  /*[ {data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A'},
+  public radarChartData: ChartDataSets[] =
+  [ {data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A'},
      { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
-  ];*/
+  ];
   public radarChartType: ChartType = 'radar';
+  public personOutputData: PersonOutputData[];
 
   public constructor(private dataService: Data) {
   }
 
   public ngOnInit(): void {
-    this.dataService.getBirthDate().subscribe((date: BirthDate) => {
-      this.birthDate = date;
+    this.dataService.getResults().subscribe((personOutputData: PersonOutputData[]) => {
+      this.personOutputData = personOutputData;
     });
-    const code: Code = new Code(this.birthDate);
-    const allContours: ContourResult[] = new ContoursProcessor(this.dataService).getContours(this.birthDate);
 
-    console.log(code.getNegativeCode);
-    console.log(code.getMiddleDigit);
-    console.log(code.getPositiveCode);
-    console.log(allContours[0].contourName + ': ' + allContours[0].valueI + ' ' + allContours[0].valueI);
-    console.log(allContours[1].contourName + ': ' + allContours[1].valueI + ' ' + allContours[1].valueII);
-    console.log(allContours[2].contourName + ': ' + allContours[2].valueII + ' ' + allContours[2].valueII);
 
-    this.radarChartData = [
-      {
-        data: [
-          allContours[0].valueI,
-          allContours[0].valueII,
-          allContours[1].valueI,
-          allContours[1].valueII,
-          allContours[2].valueI,
-          allContours[2].valueII
-        ],
-        label: 'User 1'// todo needs getting real user lable
-      },
-    ];
+    console.log(this.personOutputData.length);
+    // console.log(code.getMiddleDigit);
+    // console.log(code.getPositiveCode);
+    // console.log(allContours[0].contourName + ': ' + allContours[0].valueI + ' ' + allContours[0].valueI);
+    // console.log(allContours[1].contourName + ': ' + allContours[1].valueI + ' ' + allContours[1].valueII);
+    // console.log(allContours[2].contourName + ': ' + allContours[2].valueII + ' ' + allContours[2].valueII);
+
+  //   this.radarChartData = [
+  //     // {
+  //     //   data: [
+  //     //     allContours[0].valueI,
+  //     //     allContours[0].valueII,
+  //     //     allContours[1].valueI,
+  //     //     allContours[1].valueII,
+  //     //     allContours[2].valueI,
+  //     //     allContours[2].valueII
+  //     //   ],
+  //     //   label: 'User 1'// todo needs getting real user lable
+  //     // },
+  //   ];
   }
 
   public chartClicked({event, active}: { event: MouseEvent, active: {}[] }): void {
