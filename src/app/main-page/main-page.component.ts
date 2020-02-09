@@ -1,6 +1,8 @@
+import { BirthDate } from './../entities/BirthDate';
 import { DinamicComponentLoaderService } from './../services/dinamic-component-loader.service';
-import { Component, OnInit, ViewChild, ViewContainerRef, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Router, NavigationExtras, Params } from '@angular/router';
+import { Data } from '../services/data.service';
 
 @Component({
   selector: 'app-main-page',
@@ -14,7 +16,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   public constructor(
     private dinamicComponentLoaderService: DinamicComponentLoaderService,
-    private router: Router
+    private router: Router,
+    private dataService: Data
       ) { }
 
   public ngOnInit(): void {
@@ -26,7 +29,10 @@ this.appendComponentToBody();
   }
 
   public calculateButtonHandler(): void {
-    this.router.navigate(['result']);
+console.log( this.queryString);
+
+    this.router.navigate(['result'], this.navigationExtras);
+    // fixme result?0=%5Bobject%20Object%5D&1=%5Bobject%20Object%5D
   }
 
   public ngOnDestroy(): void {
@@ -38,6 +44,25 @@ this.appendComponentToBody();
     this.dinamicComponentLoaderService.addDynamicComponent();
   }
 
+  private get navigationExtras(): NavigationExtras {
+
+    const navigationExtras: NavigationExtras = {
+      queryParams: this.queryString
+    };
+
+    return navigationExtras;
+  }
+
+  private get queryString(): Params[] {
+    const allBirthDays: BirthDate[] = this.dataService.getBirthdayArray();
+
+    const result: Params[] = [];
+    allBirthDays.forEach((birthDay: BirthDate) => {
+      result.push({[birthDay.dataPickerId]: birthDay.day + '/' + birthDay.month + '/' + birthDay.year});
+    });
+
+    return result;
+  }
 
 
 }

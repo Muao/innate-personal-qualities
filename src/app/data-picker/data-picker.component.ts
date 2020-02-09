@@ -22,7 +22,7 @@ export class DataPickerComponent implements OnInit {
     const day: number = event.value.getDate();
     const dataPickerId: string = event.targetElement.id;
     const birthDate: BirthDate = new BirthDate(day, month, year, dataPickerId);
-    this.dataService.pushNewBirthDay(birthDate);
+    this.dataService.putToBirthDayArray(birthDate);
   }
 
 }

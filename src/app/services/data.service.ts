@@ -15,10 +15,12 @@ import { ContoursProcessor } from '../utilites/ContoursProcessor';
 })
 export class Data {
 
+
   private static isLeapYear(year: number): boolean {
     return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
   }
 
+  private birthDateArray: BirthDate[] = [];
   private personOutputData: PersonOutputData[] = [];
 
   private years: Year[] = [
@@ -284,6 +286,22 @@ export class Data {
     return this.months.find((monss: Month) => monss.month === month);
   }
 
+  public putToBirthDayArray(inputBirthDate: BirthDate): void {
+
+    const sameDatePickerIndex: number =
+    this.birthDateArray.findIndex( (b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
+
+    if (sameDatePickerIndex !== -1) { // -1 if array haven't the same data picker id
+      this.birthDateArray.splice(sameDatePickerIndex, 1, inputBirthDate);
+    } else {
+      this.birthDateArray.push(inputBirthDate);
+    }
+  }
+
+  public getBirthdayArray(): BirthDate[] {
+    return this.birthDateArray;
+  }
+
   public pushNewBirthDay(inputBirthDate: BirthDate): void {
 
     const code: Code = new Code(inputBirthDate);
@@ -310,5 +328,6 @@ export class Data {
 
   public clearPersonalOutputData(): void {
     this.personOutputData = [];
+    this.birthDateArray = [];
   }
 }

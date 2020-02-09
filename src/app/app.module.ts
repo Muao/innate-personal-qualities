@@ -17,6 +17,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { RouterModule } from '@angular/router';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MainPageComponent } from './main-page/main-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { MainPageComponent } from './main-page/main-page.component';
     MatInputModule,
     ChartsModule,
     MatCheckboxModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: '', component: MainPageComponent
