@@ -26,4 +26,8 @@ public constructor(day: number, month: number, year: number, dataPickerId: strin
   public get dataPickerId(): string {
     return this._dataPickerId;
   }
+
+  public toString(): string {
+  return this._dataPickerId + ': ' + this._day + '.' + this._month + '.' + this._year;
+  }
 }
