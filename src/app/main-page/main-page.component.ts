@@ -1,7 +1,7 @@
-import { BirthDate } from './../entities/BirthDate';
-import { DinamicComponentLoaderService } from './../services/dinamic-component-loader.service';
+import { BirthDate } from '../entities/BirthDate';
+import { DinamicComponentLoaderService } from '../services/dinamic-component-loader.service';
 import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Router, NavigationExtras, Params } from '@angular/router';
+import { NavigationExtras, Params, Router } from '@angular/router';
 import { Data } from '../services/data.service';
 
 @Component({
@@ -18,25 +18,25 @@ export class MainPageComponent implements OnInit, OnDestroy {
     private dinamicComponentLoaderService: DinamicComponentLoaderService,
     private router: Router,
     private dataService: Data
-      ) { }
+  ) {
+  }
 
   public ngOnInit(): void {
   }
 
 
   public oneMoreButtonHandler(): void {
-this.appendComponentToBody();
+    this.appendComponentToBody();
   }
 
   public calculateButtonHandler(): void {
-console.log( this.queryString);
+    console.log(this.queryString);
 
     this.router.navigate(['result'], this.navigationExtras);
-    // fixme result?0=%5Bobject%20Object%5D&1=%5Bobject%20Object%5D
   }
 
   public ngOnDestroy(): void {
-    // how to destory child component, or remove it from container
+    // fixme how to destory child component, or remove it from container?
   }
 
   private appendComponentToBody(): void {
@@ -46,23 +46,29 @@ console.log( this.queryString);
 
   private get navigationExtras(): NavigationExtras {
 
-    const navigationExtras: NavigationExtras = {
+    return {
       queryParams: this.queryString
     };
-
-    return navigationExtras;
   }
 
-  private get queryString(): Params[] {
+  private get queryString(): Params {
     const allBirthDays: BirthDate[] = this.dataService.getBirthdayArray();
-
-    const result: Params[] = [];
+    // fixme how can I make same in normal way?
+    let queryParams: string = '{';
     allBirthDays.forEach((birthDay: BirthDate) => {
-      result.push({[birthDay.dataPickerId]: birthDay.day + '/' + birthDay.month + '/' + birthDay.year});
+
+      const paramName: string = (birthDay.dataPickerId).replace('mat-input', 'user');
+      queryParams += '"' + paramName + '"'
+        + ': "' + birthDay.day
+        + '.' + birthDay.month
+        + '.' + birthDay.year
+        + '",';
+
     });
 
-    return result;
+    queryParams = queryParams.replace(/.$/, '');
+    queryParams += '}';
+
+    return JSON.parse(queryParams);
   }
-
-
 }
