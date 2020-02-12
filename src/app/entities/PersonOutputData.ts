@@ -1,9 +1,9 @@
 import { ContourResult } from './ContourResult';
 import { Code } from './Code';
 export class PersonOutputData {
-  private _code: Code;
-  private _contourResult: ContourResult[];
-  private _dataPickerId: string;
+  private readonly _code: Code;
+  private readonly _contourResult: ContourResult[];
+  private readonly _dataPickerId: string;
 
   public constructor(code: Code, contourResult: ContourResult[], dataPickerId: string) {
     this._code = code;

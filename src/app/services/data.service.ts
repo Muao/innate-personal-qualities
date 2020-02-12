@@ -1,28 +1,21 @@
 import { PersonOutputData } from './../entities/PersonOutputData';
 import { Month } from '../entities/Month';
-
 import { Injectable } from '@angular/core';
 import { Year } from '../entities/Year';
 import { Contour } from '../entities/Contour';
 import { ContourResult } from '../entities/ContourResult';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { BirthDate } from '../entities/BirthDate';
 import { Code } from '../entities/Code';
 import { ContoursProcessor } from '../utilites/ContoursProcessor';
+import { ChartDataSets } from 'chart.js';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Data {
 
-
-  private static isLeapYear(year: number): boolean {
-    return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
-  }
-
   private birthDateArray: BirthDate[] = [];
   private personOutputData: PersonOutputData[] = [];
-
   private years: Year[] = [
     new Year(1900, 7, 17, 17),
     new Year(1901, 10, 16, 18),
@@ -148,7 +141,6 @@ export class Data {
     new Year(2021, 18, 6, 9),
     new Year(2022, 21, 5, 7),
   ];
-
   private months: Month[] = [
     new Month(22, 29, 13, 27, 5), // it's feb of leap year access by zero
     new Month(1, 31, 12, 26, 4),
@@ -164,7 +156,6 @@ export class Data {
     new Month(11, 30, 8, 3, 31),
     new Month(12, 31, 0, 0, 0),
   ];
-
 
 // todo needs to use internationalization by browser settings
   private physics: Contour[] = [
@@ -222,43 +213,47 @@ export class Data {
     new Contour(26, 37, 41, 'холодный'),
     new Contour(27, 56, 73, 'страстный'),
     new Contour(28, 44, 73, 'эмпатический'),
-    ];
+  ];
 
   private intellectuals: Contour[] = [
     new Contour(1, 64, 35, 'гармоничный художественный'),
-     new Contour(2, 21, 65, 'дискретный'),
-     new Contour(3, 21, 65, 'дискретный'),
-     new Contour(4, 93, 82, 'сверхпродуктивный'),
-     new Contour(5, 43, 41, 'гармоничный художественный'),
-     new Contour(6, 0, 99, 'дискретный'),
-     new Contour(7, 57, 88, 'продуктивный мыслительный'),
-     new Contour(8, 7, 41, 'прикладной мыслительный'),
-     new Contour(9, 29, 35, 'прикладной смешанный'),
-     new Contour(10, 86, 35, 'гармоничный художественный'),
-     new Contour(11, 29, 82, 'гармоничный мыслительный'),
-     new Contour(12, 86, 41, 'гармоничный художественный'),
-     new Contour(13, 14, 71, 'дискретный'),
-     new Contour(14, 50, 59, 'продуктивный смешанный'),
-     new Contour(15, 78, 65, 'продуктивный художественный'),
-     new Contour(16, 93, 24, 'аналоговый'),
-     new Contour(17, 84, 71, 'продуктивный художественный'),
-     new Contour(18, 29, 41, 'прикладной смешанный'),
-     new Contour(19, 26, 71, 'гармоничный мыслительный'),
-     new Contour(20, 99, 82, 'сверхпродуктивный'),
-     new Contour(21, 7, 76, 'дискретный'),
-     new Contour(22, 14, 35, 'прикладной мыслительный'),
-     new Contour(23, 50, 65, 'продуктивный смешанный'),
-     new Contour(24, 26, 18, 'прикладной смешанный'),
-     new Contour(25, 29, 88, 'гармоничный мыслительный'),
-     new Contour(26, 93, 59, 'продуктивный художественный'),
-     new Contour(27, 57, 82, 'продуктивный мыслительный'),
-     new Contour(28, 29, 29, 'прикладной смешанный'),
-     new Contour(29, 29, 88, 'гармоничный мыслительный'),
-     new Contour(30, 71, 47, 'гармоничный художественный'),
-     new Contour(31, 7, 35, 'прикладной мыслительный'),
-     new Contour(32, 64, 59, 'продуктивный смешанный'),
-     new Contour(33, 29, 82, 'гармоничный мыслительный'),
-    ];
+    new Contour(2, 21, 65, 'дискретный'),
+    new Contour(3, 21, 65, 'дискретный'),
+    new Contour(4, 93, 82, 'сверхпродуктивный'),
+    new Contour(5, 43, 41, 'гармоничный художественный'),
+    new Contour(6, 0, 99, 'дискретный'),
+    new Contour(7, 57, 88, 'продуктивный мыслительный'),
+    new Contour(8, 7, 41, 'прикладной мыслительный'),
+    new Contour(9, 29, 35, 'прикладной смешанный'),
+    new Contour(10, 86, 35, 'гармоничный художественный'),
+    new Contour(11, 29, 82, 'гармоничный мыслительный'),
+    new Contour(12, 86, 41, 'гармоничный художественный'),
+    new Contour(13, 14, 71, 'дискретный'),
+    new Contour(14, 50, 59, 'продуктивный смешанный'),
+    new Contour(15, 78, 65, 'продуктивный художественный'),
+    new Contour(16, 93, 24, 'аналоговый'),
+    new Contour(17, 84, 71, 'продуктивный художественный'),
+    new Contour(18, 29, 41, 'прикладной смешанный'),
+    new Contour(19, 26, 71, 'гармоничный мыслительный'),
+    new Contour(20, 99, 82, 'сверхпродуктивный'),
+    new Contour(21, 7, 76, 'дискретный'),
+    new Contour(22, 14, 35, 'прикладной мыслительный'),
+    new Contour(23, 50, 65, 'продуктивный смешанный'),
+    new Contour(24, 26, 18, 'прикладной смешанный'),
+    new Contour(25, 29, 88, 'гармоничный мыслительный'),
+    new Contour(26, 93, 59, 'продуктивный художественный'),
+    new Contour(27, 57, 82, 'продуктивный мыслительный'),
+    new Contour(28, 29, 29, 'прикладной смешанный'),
+    new Contour(29, 29, 88, 'гармоничный мыслительный'),
+    new Contour(30, 71, 47, 'гармоничный художественный'),
+    new Contour(31, 7, 35, 'прикладной мыслительный'),
+    new Contour(32, 64, 59, 'продуктивный смешанный'),
+    new Contour(33, 29, 82, 'гармоничный мыслительный'),
+  ];
+
+  private static isLeapYear(year: number): boolean {
+    return (year % 4 === 0 && year % 100 !== 0 || year % 400 === 0);
+  }
 
   public getPhysics(index: number): ContourResult {
     const fromTable: Contour = this.physics.find((cont: Contour) => cont.index === index);
@@ -289,7 +284,7 @@ export class Data {
   public putToBirthDayArray(inputBirthDate: BirthDate): void {
 
     const sameDatePickerIndex: number =
-    this.birthDateArray.findIndex( (b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
+      this.birthDateArray.findIndex((b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
 
     if (sameDatePickerIndex !== -1) { // -1 if array haven't the same data picker id
       this.birthDateArray.splice(sameDatePickerIndex, 1, inputBirthDate);
@@ -307,23 +302,43 @@ export class Data {
     const code: Code = new Code(inputBirthDate);
 
     const contourResult: ContourResult[] =
-    new ContoursProcessor(this).getContours(inputBirthDate);
+      new ContoursProcessor(this).getContours(inputBirthDate);
 
-    const  newPersonOutputData:  PersonOutputData =
-    new PersonOutputData(code, contourResult, inputBirthDate.dataPickerId);
+    const newPersonOutputData: PersonOutputData =
+      new PersonOutputData(code, contourResult, inputBirthDate.dataPickerId);
 
     const sameDatePickerIndex: number =
-    this.personOutputData.findIndex((data: PersonOutputData) => (data.dataPickerId === inputBirthDate.dataPickerId));
+      this.personOutputData.findIndex((data: PersonOutputData) => (data.dataPickerId === inputBirthDate.dataPickerId));
 
     if (sameDatePickerIndex === -1) { // -1 if array haven't the same data picker id
-    this.personOutputData.push(newPersonOutputData);
+      this.personOutputData.push(newPersonOutputData);
     } else {
-    this.personOutputData.splice(sameDatePickerIndex, 1, newPersonOutputData);
+      this.personOutputData.splice(sameDatePickerIndex, 1, newPersonOutputData);
     }
   }
 
   public get personalOutputData(): PersonOutputData[] {
     return this.personOutputData;
+  }
+
+  public getRadarChartData(): ChartDataSets[] {
+    const radarChartData: ChartDataSets[] = [];
+    this.personalOutputData.forEach((data: PersonOutputData) => {
+        radarChartData.push(
+          {
+            data: [
+              data.contourResult[0].valueI,
+              data.contourResult[0].valueII,
+              data.contourResult[1].valueI,
+              data.contourResult[1].valueII,
+              data.contourResult[2].valueI,
+              data.contourResult[2].valueII
+            ],
+            label: data.dataPickerId
+          });
+      }
+    );
+    return radarChartData;
   }
 
   public clearPersonalOutputData(): void {
