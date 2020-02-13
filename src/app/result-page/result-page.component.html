@@ -1,11 +1,12 @@
-<!--<app-chart></app-chart>-->
-<div fxLayout='row' fxLayoutWrap class="cards">
-  <div fxFlex="20" class="example-card">
-<html>
-<body>
-<div *ngIf="personOutputData">
+<app-chart></app-chart>
+
+<!--<div fxFlex="20" class="example-card">-->
+
+<div fxLayout="row" fxLayoutAlign="center center"  *ngIf="personOutputData">
     <mat-card *ngFor='let outputData of personOutputData'
-              style="margin-top:10px"
+              style="margin:10px;"
+              fxLayoutWrap class="cards"
+
               [style.background-color]="outputData.color">
       <mat-card-header>
         <mat-card-title>
@@ -15,11 +16,14 @@
       <mat-card-content>
         {{outputData.code.negativeCode.join(" ")}}<br>
         {{outputData.code.middleDigit}}<br>
-        {{outputData.code.positiveCode.join(" ")}}
-        {{outputData.contourResult[1].desription}}
+        {{outputData.code.positiveCode.join(" ")}}<br>
+        <br>
+        Физический контур: <br><b>{{outputData.contourResult[0].desription}}</b><br>
+        Эмоциональный контур: <br><b>{{outputData.contourResult[1].desription}}</b><br>
+        Интеллектуальный контур: <br><b>{{outputData.contourResult[2].desription}}</b><br>
       </mat-card-content>
     </mat-card>
   </div>
 <!--</div>-->
-</body>
-</html>
+
+
