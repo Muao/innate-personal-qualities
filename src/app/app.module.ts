@@ -20,6 +20,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { ResultPageComponent } from './result-page/result-page.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { ResultPageComponent } from './result-page/result-page.component';
     MatCheckboxModule,
     HttpClientModule,
     MatCardModule,
+    FlexLayoutModule,
     RouterModule.forRoot([
       {
         path: '', component: MainPageComponent

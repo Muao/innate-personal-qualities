@@ -1,23 +1,51 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit} from '@angular/core';
 import { Data } from '../services/data.service';
 import { PersonOutputData } from '../entities/PersonOutputData';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+import { BirthDate } from '../entities/BirthDate';
 
 @Component({
   selector: 'app-result-page',
   templateUrl: './result-page.component.html',
   styleUrls: ['./result-page.component.css']
 })
-export class ResultPageComponent implements OnInit {
+export class ResultPageComponent implements OnInit, OnDestroy {
+
 
   @Input()
   private personOutputData: PersonOutputData[];
 
-  public constructor(private dataService: Data) {}
+  public constructor(
+    private route: ActivatedRoute,
+    private dataService: Data
+  ) {}
 
   public ngOnInit(): void {
     this.dataService.getPersonOutputData().subscribe((data: PersonOutputData[]) => {
       this.personOutputData = data;
     });
+    this.route.queryParamMap.subscribe((data: ParamMap) => {
+      const usersDate: BirthDate[] = [];
+
+      for (const dataKey in data) {
+        const obj: Object = data[dataKey];
+        for (const key of Object.keys(obj)) {
+          const date: string[] = (obj[key]).split('.');
+          usersDate.push(new BirthDate(
+            Number.parseInt(date[0]),
+            Number.parseInt(date[1]),
+            Number.parseInt(date[2]),
+            key));
+        }
+      }
+      usersDate.forEach((i: BirthDate) => {
+        this.dataService.pushNewBirthDay(i);
+      });
+    });
+
+  }
+  public ngOnDestroy(): void {
+    this.dataService.clearPersonalOutputData(); // if go back to Data Page -> old DataPucckerId's no any matter
   }
 
 }

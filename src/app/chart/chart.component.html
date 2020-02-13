@@ -1,7 +1,7 @@
 
 <button [routerLink]="['']" mat-stroked-button>Back</button>
-<div *ngIf="birthDate">{{birthDate.year}}</div>
-    <div style="display: block">
+
+    <div *ngIf="radarChartData" style="display: block">
       <canvas baseChart
               [datasets]="radarChartData"
               [options]="radarChartOptions"
