@@ -3,49 +3,49 @@ import { BirthDate } from './BirthDate';
 
 export class Code {
 
-  private day: number;
-  private month: number;
-  private year: number;
+  public get positiveCode(): number[] {
+    return this._positiveCode;
+  }
 
-  private negativeCode: number[];
-  private positiveCode: number[];
-  private middleDigit: number;
+  public get middleDigit(): number {
+    return this._middleDigit;
+  }
+
+  private readonly day: number;
+  private readonly month: number;
+  private readonly year: number;
+
+  private _negativeCode: number[];
+  private _positiveCode: number[];
+  private readonly _middleDigit: number;
 
   public constructor(birthDate: BirthDate) {
-  this.day = birthDate.day;
-  this.month = birthDate.month;
-  this.year = birthDate.year;
-  this.middleDigit = Calculator.sumDigitsIn(this.day + this.month + this.year);
-  this.negativeCode = this.calcNegativeCode();
-  this.positiveCode = this.calcPositiveCode();
+    this.day = birthDate.day;
+    this.month = birthDate.month;
+    this.year = birthDate.year;
+    this._middleDigit = Calculator.sumDigitsIn(this.day + this.month + this.year);
+    this._negativeCode = this.calcNegativeCode();
+    this._positiveCode = this.calcPositiveCode();
   }
 
-private calcNegativeCode(): number[] {
-  const firstDigitOfNegativeCode: number = Calculator.sumDigitsIn(this.month + this.day);
-
-  let numberr: string = (this.month < 10) ? '0' + this.month : this.month.toString();
-  numberr = this.day.toString() + numberr;
-  const nonUnderstandableDigit: number = Number(numberr);
-
-  const negativeCode: string = String(nonUnderstandableDigit * this.year);
-  const negativeCodeAsNumbers: number[] = Calculator.stringToNumberArray(negativeCode);
-  negativeCodeAsNumbers.unshift(firstDigitOfNegativeCode); // insert first digit of negative code to it's place
-  return this.negativeCode = negativeCodeAsNumbers;
-}
-
-private calcPositiveCode(): number[] {
-  return this.positiveCode = this.negativeCode.map((el: number) => Calculator.sumDigitsIn(el + this.middleDigit));
+  public get negativeCode(): number[] {
+    return this._negativeCode;
   }
 
-public get getNegativeCode(): number[] {
-  return this.negativeCode;
-}
+  private calcNegativeCode(): number[] {
+    const firstDigitOfNegativeCode: number = Calculator.sumDigitsIn(this.month + this.day);
 
-public get getPositiveCode(): number[] {
-  return this.positiveCode;
-}
+    let numberr: string = (this.month < 10) ? '0' + this.month : this.month.toString();
+    numberr = this.day.toString() + numberr;
+    const nonUnderstandableDigit: number = Number(numberr);
 
-public get getMiddleDigit(): number {
-  return this.middleDigit;
-}
+    const negativeCode: string = String(nonUnderstandableDigit * this.year);
+    const negativeCodeAsNumbers: number[] = Calculator.stringToNumberArray(negativeCode);
+    negativeCodeAsNumbers.unshift(firstDigitOfNegativeCode); // insert first digit of negative code to it's place
+    return this._negativeCode = negativeCodeAsNumbers;
+  }
+
+  private calcPositiveCode(): number[] {
+    return this._positiveCode = this.negativeCode.map((el: number) => Calculator.sumDigitsIn(el + this._middleDigit));
+  }
 }

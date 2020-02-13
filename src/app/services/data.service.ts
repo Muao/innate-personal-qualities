@@ -8,6 +8,7 @@ import { BirthDate } from '../entities/BirthDate';
 import { Code } from '../entities/Code';
 import { ContoursProcessor } from '../utilites/ContoursProcessor';
 import { ChartDataSets } from 'chart.js';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -286,7 +287,7 @@ export class Data {
     const sameDatePickerIndex: number =
       this.birthDateArray.findIndex((b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
 
-    if (sameDatePickerIndex !== -1) { // -1 if array haven't the same data picker id
+    if (sameDatePickerIndex !== -1) { // -1 if array haven't the same outputData picker id
       this.birthDateArray.splice(sameDatePickerIndex, 1, inputBirthDate);
     } else {
       this.birthDateArray.push(inputBirthDate);
@@ -310,20 +311,20 @@ export class Data {
     const sameDatePickerIndex: number =
       this.personOutputData.findIndex((data: PersonOutputData) => (data.dataPickerId === inputBirthDate.dataPickerId));
 
-    if (sameDatePickerIndex === -1) { // -1 if array haven't the same data picker id
+    if (sameDatePickerIndex === -1) { // -1 if array haven't the same outputData picker id
       this.personOutputData.push(newPersonOutputData);
     } else {
       this.personOutputData.splice(sameDatePickerIndex, 1, newPersonOutputData);
     }
   }
 
-  public get personalOutputData(): PersonOutputData[] {
-    return this.personOutputData;
+  public getPersonOutputData(): Observable<PersonOutputData[]> {
+    return of(this.personOutputData);
   }
 
   public getRadarChartData(): ChartDataSets[] {
     const radarChartData: ChartDataSets[] = [];
-    this.personalOutputData.forEach((data: PersonOutputData) => {
+    this.personOutputData.forEach((data: PersonOutputData) => {
         radarChartData.push(
           {
             data: [
@@ -334,7 +335,9 @@ export class Data {
               data.contourResult[2].valueI,
               data.contourResult[2].valueII
             ],
-            label: data.dataPickerId
+            label: data.dataPickerId,
+            backgroundColor: data.color,
+            borderColor: data.color
           });
       }
     );

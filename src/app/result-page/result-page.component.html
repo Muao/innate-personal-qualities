@@ -1,0 +1,16 @@
+<app-chart></app-chart>
+<mat-card *ngFor='let outputData of personOutputData'
+  [style.background-color] = "outputData.color">
+  <mat-card-header>
+    <mat-card-title>
+      {{outputData.dataPickerId}}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    {{outputData.code.negativeCode.join(" ")}}<br>
+    {{outputData.code.middleDigit}}<br>
+    {{outputData.code.positiveCode.join(" ")}}
+    {{outputData.contourResult[1].desription}}
+  </mat-card-content>
+
+</mat-card>

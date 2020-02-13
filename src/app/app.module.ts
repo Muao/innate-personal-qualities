@@ -18,6 +18,8 @@ import { RouterModule } from '@angular/router';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MainPageComponent } from './main-page/main-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MatCardModule } from '@angular/material/card';
+import { ResultPageComponent } from './result-page/result-page.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     DataPickerComponent,
     ChartComponent,
     NotFoundComponent,
-    MainPageComponent
+    MainPageComponent,
+    ResultPageComponent
   ],
   imports: [
     BrowserModule,
@@ -39,12 +42,13 @@ import { HttpClientModule } from '@angular/common/http';
     ChartsModule,
     MatCheckboxModule,
     HttpClientModule,
+    MatCardModule,
     RouterModule.forRoot([
       {
         path: '', component: MainPageComponent
       },
       {
-        path: 'result', component: ChartComponent
+        path: 'result', component: ResultPageComponent
       },
       {
         path: '**', component: NotFoundComponent
