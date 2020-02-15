@@ -30,8 +30,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
   }
 
   public calculateButtonHandler(): void {
-    console.log(this.queryString);
-
     this.router.navigate(['result'], this.navigationExtras);
   }
 
