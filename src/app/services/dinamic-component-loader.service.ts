@@ -1,7 +1,7 @@
 
 // tslint:disable-next-line: max-line-length
 import { ComponentFactory, ComponentFactoryResolver, ComponentRef, Injectable, ViewContainerRef } from '@angular/core';
-import { DataPickerComponent } from '../data-picker/data-picker.component';
+import { InputDateFormComponent } from '../input-date-form/input-date-form.component';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +18,10 @@ export class DinamicComponentLoaderService {
     this.rootViewContainer = viewContainerRef;
   }
   public addDynamicComponent(): void {
-    const factory: ComponentFactory<DataPickerComponent> =
-    this.factoryResolver.resolveComponentFactory(DataPickerComponent);
+    const factory: ComponentFactory<InputDateFormComponent> =
+    this.factoryResolver.resolveComponentFactory(InputDateFormComponent);
 
-    const component: ComponentRef<DataPickerComponent> =
+    const component: ComponentRef<InputDateFormComponent> =
     factory.create(this.rootViewContainer.parentInjector);
 
     this.rootViewContainer.insert(component.hostView);

@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { ResultPageComponent } from './result-page/result-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { InputDateFormComponent } from './input-date-form/input-date-form.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ChartComponent,
     NotFoundComponent,
     MainPageComponent,
-    ResultPageComponent
+    ResultPageComponent,
+    InputDateFormComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
   ],
   entryComponents: [
-    DataPickerComponent
+    InputDateFormComponent
   ],
   exports: [
     MatButtonModule,
