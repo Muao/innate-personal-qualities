@@ -1,14 +1,16 @@
 export class BirthDate {
-  private _day: number;
-  private _month: number;
-  private _year: number;
-  private _dataPickerId: string;
+  private readonly _day: number;
+  private readonly _month: number;
+  private readonly _year: number;
+  private readonly _dataPickerId: number;
+  private readonly _name: string;
 
-public constructor(day: number, month: number, year: number, dataPickerId: string) {
+public constructor(day: number, month: number, year: number, name: string, dataPickerId: number) {
     this._day = day;
     this._month = month;
     this._year = year;
     this._dataPickerId = dataPickerId;
+    this._name = name;
   }
 
   public get day(): number {
@@ -23,8 +25,12 @@ public constructor(day: number, month: number, year: number, dataPickerId: strin
     return this._year;
   }
 
-  public get dataPickerId(): string {
+  public get dataPickerId(): number {
     return this._dataPickerId;
+  }
+
+  public get name(): string {
+  return this._name;
   }
 
   public toString(): string {

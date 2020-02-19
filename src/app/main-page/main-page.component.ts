@@ -55,7 +55,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     let queryParams: string = '{';
     allBirthDays.forEach((birthDay: BirthDate) => {
 
-      const paramName: string = (birthDay.dataPickerId).replace('mat-input', 'user');
+      const paramName: string = (birthDay.name);
       queryParams += '"' + paramName + '"'
         + ': "' + birthDay.day
         + '.' + birthDay.month

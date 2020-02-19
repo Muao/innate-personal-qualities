@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Data } from '../services/data.service';
 import { PersonOutputData } from '../entities/PersonOutputData';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -24,9 +24,9 @@ export class ResultPageComponent implements OnInit, OnDestroy {
     this.dataService.getPersonOutputData().subscribe((data: PersonOutputData[]) => {
       this.personOutputData = data;
     });
+
     this.route.queryParamMap.subscribe((data: ParamMap) => {
       const usersDate: BirthDate[] = [];
-
       for (const dataKey in data) {
         const obj: Object = data[dataKey];
         for (const key of Object.keys(obj)) {
@@ -35,11 +35,12 @@ export class ResultPageComponent implements OnInit, OnDestroy {
             Number.parseInt(date[0]),
             Number.parseInt(date[1]),
             Number.parseInt(date[2]),
-            key));
+            key,
+            0));
         }
       }
       usersDate.forEach((i: BirthDate) => {
-        this.dataService.pushNewBirthDay(i);
+        this.dataService.createResultUsersData(i);
       });
     });
 

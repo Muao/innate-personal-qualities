@@ -15,6 +15,7 @@ import { Observable, of } from 'rxjs';
 })
 export class Data {
 
+  private _nextId: number = 0;
   private birthDateArray: BirthDate[] = [];
   private personOutputData: PersonOutputData[] = [];
   private years: Year[] = [
@@ -292,13 +293,24 @@ export class Data {
     } else {
       this.birthDateArray.push(inputBirthDate);
     }
+
+    console.log('put to birthday: ' + inputBirthDate.name + ' --> ' + this.birthDateArray.length);
+  }
+
+  public nextId(): number {
+    this._nextId = this._nextId + 1;
+    return this._nextId;
+  }
+
+  public resetNextId(): void {
+    this._nextId = 0;
   }
 
   public getBirthdayArray(): BirthDate[] {
     return this.birthDateArray;
   }
 
-  public pushNewBirthDay(inputBirthDate: BirthDate): void {
+  public createResultUsersData(inputBirthDate: BirthDate): void {
 
     const code: Code = new Code(inputBirthDate);
 
@@ -306,16 +318,8 @@ export class Data {
       new ContoursProcessor(this).getContours(inputBirthDate);
 
     const newPersonOutputData: PersonOutputData =
-      new PersonOutputData(code, contourResult, inputBirthDate.dataPickerId);
-
-    const sameDatePickerIndex: number =
-      this.personOutputData.findIndex((data: PersonOutputData) => (data.dataPickerId === inputBirthDate.dataPickerId));
-
-    if (sameDatePickerIndex === -1) { // -1 if array haven't the same outputData picker id
+      new PersonOutputData(code, contourResult, inputBirthDate.dataPickerId, inputBirthDate.name);
       this.personOutputData.push(newPersonOutputData);
-    } else {
-      this.personOutputData.splice(sameDatePickerIndex, 1, newPersonOutputData);
-    }
   }
 
   public getPersonOutputData(): Observable<PersonOutputData[]> {
@@ -335,7 +339,7 @@ export class Data {
               data.contourResult[2].valueI,
               data.contourResult[2].valueII
             ],
-            label: data.dataPickerId,
+            label: data.name,
             backgroundColor: data.color,
             borderColor: data.color
           });

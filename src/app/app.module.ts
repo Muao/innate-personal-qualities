@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
-import { DataPickerComponent } from './data-picker/data-picker.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule, MatNativeDateModule } from '@angular/material';
@@ -22,11 +21,11 @@ import { MatCardModule } from '@angular/material/card';
 import { ResultPageComponent } from './result-page/result-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { InputDateFormComponent } from './input-date-form/input-date-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DataPickerComponent,
     ChartComponent,
     NotFoundComponent,
     MainPageComponent,
@@ -47,6 +46,7 @@ import { InputDateFormComponent } from './input-date-form/input-date-form.compon
     HttpClientModule,
     MatCardModule,
     FlexLayoutModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {
         path: '', component: MainPageComponent
