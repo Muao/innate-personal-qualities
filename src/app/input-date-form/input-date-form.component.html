@@ -1,4 +1,3 @@
-<!--<app-data-picker></app-data-picker>-->
 
 <form id="{{nextId}}" [formGroup]="profileForm" (focusout)="onSubmit()">
   <mat-form-field class="line-padding-right">
@@ -6,10 +5,10 @@
   </mat-form-field>
 
   <mat-form-field class="line-padding-right">
-    <input matInput [matDatepicker]="picker"
+    <input type="text" matInput [matDatepicker]="picker"
            placeholder="Input date of birth" formControlName="date">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+    <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
   </mat-form-field>
   <button  *ngIf='showButton' mat-button color="warn" (click)="removeInputComponentHandler()">Remove</button>
 </form>

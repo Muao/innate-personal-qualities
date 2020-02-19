@@ -293,8 +293,6 @@ export class Data {
     } else {
       this.birthDateArray.push(inputBirthDate);
     }
-
-    console.log('put to birthday: ' + inputBirthDate.name + ' --> ' + this.birthDateArray.length);
   }
 
   public nextId(): number {
