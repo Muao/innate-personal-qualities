@@ -9,6 +9,7 @@ import { Code } from '../entities/Code';
 import { ContoursProcessor } from '../utilites/ContoursProcessor';
 import { ChartDataSets } from 'chart.js';
 import { Observable, of } from 'rxjs';
+import { Potential } from '../entities/Potential';
 
 @Injectable({
   providedIn: 'root'
@@ -310,14 +311,18 @@ export class Data {
 
   public createResultUsersData(inputBirthDate: BirthDate): void {
 
-    const code: Code = new Code(inputBirthDate);
+    const code: Code =
+      new Code(inputBirthDate);
 
     const contourResult: ContourResult[] =
       new ContoursProcessor(this).getContours(inputBirthDate);
 
-    const newPersonOutputData: PersonOutputData =
-      new PersonOutputData(code, contourResult, inputBirthDate.dataPickerId, inputBirthDate.name);
-      this.personOutputData.push(newPersonOutputData);
+    const potential: Potential =
+      new Potential(contourResult);
+
+    this.personOutputData.push(
+      new PersonOutputData(code, contourResult, potential, inputBirthDate.dataPickerId, inputBirthDate.name)
+    );
   }
 
   public getPersonOutputData(): Observable<PersonOutputData[]> {

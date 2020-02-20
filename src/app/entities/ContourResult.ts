@@ -23,7 +23,7 @@ export class ContourResult {
     return this._valueII;
   }
 
-  public get desription(): string {
+  public get description(): string {
     return this._description;
   }
 }

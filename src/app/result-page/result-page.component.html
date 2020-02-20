@@ -18,9 +18,17 @@
         {{outputData.code.middleDigit}}<br>
         {{outputData.code.positiveCode.join(" ")}}<br>
         <br>
-        Физический контур: <br><b>{{outputData.contourResult[0].desription}}</b><br>
-        Эмоциональный контур: <br><b>{{outputData.contourResult[1].desription}}</b><br>
-        Интеллектуальный контур: <br><b>{{outputData.contourResult[2].desription}}</b><br>
+        Физический контур: <b>{{outputData.contourResult[0].description}}</b><br>
+        Физический потенциал: <b>{{outputData.potential.physical}}/198</b><br>
+        Эмоциональный контур: <b>{{outputData.contourResult[1].description}}</b><br>
+        Эмоциональный потенциал: <b>{{outputData.potential.emotional}}/198</b><br>
+        Интеллектуальный контур: <b>{{outputData.contourResult[2].description}}</b><br>
+        Интелелктуальный потенциал: <b>{{outputData.potential.emotional}}/198</b><br>
+        Левополушарный интеллект: <b>{{outputData.potential.leftBrain}}/198</b><br>
+        Правополушарный интеллект: <b>{{outputData.potential.rightBrain}}/198</b><br>
+        Мужской потенциал: <b>{{outputData.potential.man}}</b><br>
+        Женский потенциал: <b>{{outputData.potential.woman}}</b><br>
+        Потенциал ассиметрии: <b>{{outputData.potential.asymmetry}}</b><br>
       </mat-card-content>
     </mat-card>
   </div>

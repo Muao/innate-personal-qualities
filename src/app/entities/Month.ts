@@ -6,7 +6,7 @@ export class Month {
   private _rowII: number;
   private _rowIII: number;
 
- public constructor (month: number, haveDays: number, rowI: number, rowII: number, rowIII: number){
+ public constructor (month: number, haveDays: number, rowI: number, rowII: number, rowIII: number) {
   this._month = month;
   this._haveDays = haveDays;
   this._rowI = rowI;
