@@ -1,8 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Data } from '../services/data.service';
-import { PersonOutputData } from '../entities/PersonOutputData';
+import { PersonOutputData } from '../entities/personOutputData';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { BirthDate } from '../entities/BirthDate';
+import { BirthDate } from '../entities/birthDate';
 
 @Component({
   selector: 'app-result-page',

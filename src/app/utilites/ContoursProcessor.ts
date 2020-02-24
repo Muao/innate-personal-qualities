@@ -1,8 +1,8 @@
-import { ContourResult } from '../entities/ContourResult';
-import { Month } from '../entities/Month';
-import { Year } from '../entities/Year';
+import { ContourResult } from '../entities/contourResult';
+import { Month } from '../entities/month';
+import { Year } from '../entities/year';
 import { Data } from '../services/data.service';
-import { BirthDate } from '../entities/BirthDate';
+import { BirthDate } from '../entities/birthDate';
 
 export class ContoursProcessor {
 

@@ -17,8 +17,11 @@
         {{outputData.code.negativeCode.join(" ")}}<br>
         {{outputData.code.middleDigit}}<br>
         {{outputData.code.positiveCode.join(" ")}}<br>
-        {{outputData.code.period}}
+        {{outputData.code.currentPeriod.join(" ")}} - текущий период обозначен символом ^<br>
+
         <br>
+        Период: <b>{{outputData.code.period}}</b> лет <br>
+        Возраст: <b>{{outputData.code.age}}</b> лет <br>
         Физический контур: <b>{{outputData.contourResult[0].description}}</b><br>
         Физический потенциал: <b>{{outputData.potential.physical}}/198</b><br>
         Эмоциональный контур: <b>{{outputData.contourResult[1].description}}</b><br>

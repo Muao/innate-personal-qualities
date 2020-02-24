@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BirthDate } from '../entities/BirthDate';
+import { BirthDate } from '../entities/birthDate';
 import { Data } from '../services/data.service';
 import { DateAdapter } from '@angular/material';
 

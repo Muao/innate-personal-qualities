@@ -1,4 +1,4 @@
-import { BirthDate } from '../entities/BirthDate';
+import { BirthDate } from '../entities/birthDate';
 import { DinamicComponentLoaderService } from '../services/dinamic-component-loader.service';
 import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { NavigationExtras, Params, Router } from '@angular/router';

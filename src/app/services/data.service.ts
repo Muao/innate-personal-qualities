@@ -1,15 +1,15 @@
-import { PersonOutputData } from './../entities/PersonOutputData';
-import { Month } from '../entities/Month';
+import { PersonOutputData } from '../entities/personOutputData';
+import { Month } from '../entities/month';
 import { Injectable } from '@angular/core';
-import { Year } from '../entities/Year';
-import { Contour } from '../entities/Contour';
-import { ContourResult } from '../entities/ContourResult';
-import { BirthDate } from '../entities/BirthDate';
-import { Code } from '../entities/Code';
+import { Year } from '../entities/year';
+import { Contour } from '../entities/contour';
+import { ContourResult } from '../entities/contourResult';
+import { BirthDate } from '../entities/birthDate';
+import { Code } from '../entities/code';
 import { ContoursProcessor } from '../utilites/ContoursProcessor';
 import { ChartDataSets } from 'chart.js';
 import { Observable, of } from 'rxjs';
-import { Potential } from '../entities/Potential';
+import { Potential } from '../entities/potential';
 
 @Injectable({
   providedIn: 'root'

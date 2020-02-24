@@ -1,6 +1,6 @@
-import { ContourResult } from './ContourResult';
-import { Code } from './Code';
-import { Potential } from './Potential';
+import { ContourResult } from './contourResult';
+import { Code } from './code';
+import { Potential } from './potential';
 export class PersonOutputData {
   private readonly _code: Code;
   private readonly _contourResult: ContourResult[];
