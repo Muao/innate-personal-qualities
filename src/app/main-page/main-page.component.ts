@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DateAdapter } from '@angular/material';
 
 @Component({
@@ -64,8 +64,8 @@ export class MainPageComponent implements OnInit {
 
     private createItem(): FormGroup {
       return this.fb.group({
-        name: '',
-        date: '',
+        name: ['', Validators.required],
+        date: ['', Validators.required],
       });
     }
 }
