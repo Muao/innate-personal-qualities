@@ -1,0 +1,15 @@
+button {
+margin: 20px;
+ }
+
+ canvas {
+max-width: 900px;
+position: relative;
+  top: 160px;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+ }
+
+
+
