@@ -284,30 +284,30 @@ export class Data {
     return this.months.find((monss: Month) => monss.month === month);
   }
 
-  public putToBirthDayArray(inputBirthDate: BirthDate): void {
+  // public putToBirthDayArray(inputBirthDate: BirthDate): void {
 
-    const sameDatePickerIndex: number =
-      this.birthDateArray.findIndex((b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
+  //   const sameDatePickerIndex: number =
+  //     this.birthDateArray.findIndex((b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
 
-    if (sameDatePickerIndex !== -1) { // -1 if array haven't the same outputData picker id
-      this.birthDateArray.splice(sameDatePickerIndex, 1, inputBirthDate);
-    } else {
-      this.birthDateArray.push(inputBirthDate);
-    }
-  }
+  //   if (sameDatePickerIndex !== -1) { // -1 if array haven't the same outputData picker id
+  //     this.birthDateArray.splice(sameDatePickerIndex, 1, inputBirthDate);
+  //   } else {
+  //     this.birthDateArray.push(inputBirthDate);
+  //   }
+  // }
 
-  public nextId(): number {
-    this._nextId = this._nextId + 1;
-    return this._nextId;
-  }
+  // public nextId(): number {
+  //   this._nextId = this._nextId + 1;
+  //   return this._nextId;
+  // }
 
-  public resetNextId(): void {
-    this._nextId = 0;
-  }
+  // public resetNextId(): void {
+  //   this._nextId = 0;
+  // }
 
-  public getBirthdayArray(): BirthDate[] {
-    return this.birthDateArray;
-  }
+  // public getBirthdayArray(): BirthDate[] {
+  //   return this.birthDateArray;
+  // }
 
   public createResultUsersData(inputBirthDate: BirthDate): void {
 
@@ -321,7 +321,7 @@ export class Data {
       new Potential(contourResult);
 
     this.personOutputData.push(
-      new PersonOutputData(code, contourResult, potential, inputBirthDate.dataPickerId, inputBirthDate.name)
+      new PersonOutputData(code, contourResult, potential, inputBirthDate.name)
     );
   }
 

@@ -35,8 +35,7 @@ export class ResultPageComponent implements OnInit, OnDestroy {
             Number.parseInt(date[0]),
             Number.parseInt(date[1]),
             Number.parseInt(date[2]),
-            key,
-            0)); // here id have no matter - 0 only for ignored.
+            key));
         }
       }
       usersDate.forEach((i: BirthDate) => {

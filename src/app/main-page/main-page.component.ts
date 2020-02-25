@@ -43,11 +43,13 @@ export class MainPageComponent implements OnInit {
 
   public calculateButtonHandler(): void {
     const resultArr: FormArray = this.orderForm.get('items') as FormArray;
+    // tslint:disable-next-line: no-any
     const resultVal: any = resultArr.getRawValue();
 
     let queryParams: string = '{';
 
     for (let index: number = 0; index < resultVal.length; index++) {
+      // tslint:disable-next-line: no-any
       const element: any = resultVal[index];
       const name: string = element.name;
       const date: Date = element.date;
@@ -60,7 +62,7 @@ export class MainPageComponent implements OnInit {
     }
     queryParams = queryParams.replace(/.$/, '');
   queryParams += '}';
-
+// tslint:disable-next-line: no-any
   const result: any = JSON.parse(queryParams);
 
   this.router.navigate(['result'], {queryParams: result});

@@ -9,8 +9,7 @@ describe('calc period', () => {
       21,
       12,
       1983,
-      'test',
-      1
+      'test'
     );
   const code: Code = new Code(birthDate);
   const result: number = code.calcPeriod();
