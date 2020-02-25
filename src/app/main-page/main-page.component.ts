@@ -10,7 +10,9 @@ import { DateAdapter } from '@angular/material';
 })
 export class MainPageComponent implements OnInit {
 
-  public startDate: Date = new Date(1990, 0, 1);
+  public startDate: Date = new Date(1983, 11, 21);
+  public minDate: Date = new Date(1900, 0, 1);
+  public maxDate: Date = new Date(2022, 11, 31);
   public parentForm: FormGroup;
   public items: FormArray;
 

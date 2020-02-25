@@ -12,12 +12,16 @@
   *ngFor="let item of parentForm.get('items').controls; let i = index;">
   <div [formGroupName]="i">
     <mat-form-field class="line-padding-right">
-      <input matInput placeholder="Input name" formControlName="name">
+      <input matInput placeholder="Input a name" formControlName="name">
     </mat-form-field>
 
     <mat-form-field class="line-padding-right">
-      <input type="text" matInput [matDatepicker]="picker"
-             placeholder="Input date of birth" formControlName="date">
+      <input readonly type="text"
+      matInput [matDatepicker]="picker"
+      [min]="minDate" [max]="maxDate"
+      placeholder="Choose a date of birth"
+      formControlName="date"
+      (click)="picker.open()">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
     </mat-form-field>
