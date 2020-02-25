@@ -1,21 +1,31 @@
-<div>
-<app-input-date-form></app-input-date-form>
 <!-- todo:
-
-  6. add additional logic and set it data to card
   7. **add button 'back' to 'result page' with not loose users dates, rename existing 'back button' to 'new calculation' button
   8. **internationalization for all
   9. **adaptive markup (for mobile)
 
   1. тип личности я- мы по таблице беретца номер эмоционального контура
 
-  10. рассчет периодов отработки: 60 \ кочицество цифр кода негатива начиная с третьей, вычитая 9. = продолжительность периода отработки, лет.
  -->
-<ng-template #dynamic></ng-template>
-<p>
-  <button mat-button (click)="oneMoreButtonHandler()" >Add Person</button>
+ <div id="group"  [formGroup]="orderForm">
+
+ <div formArrayName="items"
+  *ngFor="let item of orderForm.get('items').controls; let i = index;">
+  <div [formGroupName]="i">
+    <mat-form-field class="line-padding-right">
+      <input matInput placeholder="Input name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field class="line-padding-right">
+      <input type="text" matInput [matDatepicker]="picker"
+             placeholder="Input date of birth" formControlName="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
+    </mat-form-field>
+    <button mat-button color="warn" (click)="removeItem(i)">Remove</button>
+  </div>
+  <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
+</div>
+<button mat-button (click)="addItem()" >Add Person</button>
   <a> or </a>
   <button mat-button color="primary" (click)="calculateButtonHandler()">Calculate</button>
-  </p>
-
 </div>

@@ -1,72 +1,69 @@
-import { BirthDate } from '../entities/birthDate';
-import { DinamicComponentLoaderService } from '../services/dinamic-component-loader.service';
 import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { NavigationExtras, Params, Router } from '@angular/router';
-import { Data } from '../services/data.service';
+import { Router } from '@angular/router';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
-export class MainPageComponent implements OnInit, OnDestroy {
+export class MainPageComponent implements OnInit {
 
-  @ViewChild('dynamic', {read: ViewContainerRef, static: true})
-  public viewContainerRef: ViewContainerRef;
+  public startDate: Date = new Date(1990, 0, 1);
+
+  public orderForm: FormGroup;
+  public items: FormArray;
 
   public constructor(
-    private dinamicComponentLoaderService: DinamicComponentLoaderService,
-    private router: Router,
-    private dataService: Data
-  ) {
-  }
+    private formBuilder: FormBuilder,
+    private router: Router) {}
 
   public ngOnInit(): void {
+    this.orderForm = this.formBuilder.group({
+      items: this.formBuilder.array([ this.createItem() ])
+    });
   }
 
+  public createItem(): FormGroup {
+    return this.formBuilder.group({
+      name: '',
+      date: '',
+    });
+  }
 
-  public oneMoreButtonHandler(): void {
-    this.appendComponentToBody();
+  public addItem(): void {
+    this.items = this.orderForm.get('items') as FormArray;
+    this.items.push(this.createItem());
+  }
+
+  public removeItem(id: number): void {
+    this.items = this.orderForm.get('items') as FormArray;
+    this.items.removeAt(id);
   }
 
   public calculateButtonHandler(): void {
-    this.router.navigate(['result'], this.navigationExtras);
-  }
+    const resultArr: FormArray = this.orderForm.get('items') as FormArray;
+    const resultVal: any = resultArr.getRawValue();
 
-  public ngOnDestroy(): void {
-    // fixme how to destory child component, or remove it from container?
-  }
-
-  private appendComponentToBody(): void {
-    this.dinamicComponentLoaderService.setRootViewContainerRef(this.viewContainerRef);
-    this.dinamicComponentLoaderService.addDynamicComponent();
-  }
-
-  private get navigationExtras(): NavigationExtras {
-
-    return {
-      queryParams: this.queryString
-    };
-  }
-
-  private get queryString(): Params {
-    const allBirthDays: BirthDate[] = this.dataService.getBirthdayArray();
-    // fixme how can I make same in normal way?
     let queryParams: string = '{';
-    allBirthDays.forEach((birthDay: BirthDate) => {
 
-      const paramName: string = (birthDay.name);
-      queryParams += '"' + paramName + '"'
-        + ': "' + birthDay.day
-        + '.' + birthDay.month
-        + '.' + birthDay.year
-        + '",';
+    for (let index: number = 0; index < resultVal.length; index++) {
+      const element: any = resultVal[index];
+      const name: string = element.name;
+      const date: Date = element.date;
 
-    });
-
+      queryParams += '"' + name + '"'
+          + ': "' + date.getDate()
+          + '.' + (date.getMonth() + 1)
+          + '.' + date.getFullYear()
+          + '",';
+    }
     queryParams = queryParams.replace(/.$/, '');
-    queryParams += '}';
+  queryParams += '}';
 
-    return JSON.parse(queryParams);
-  }
+  const result: any = JSON.parse(queryParams);
+
+  this.router.navigate(['result'], {queryParams: result});
+    }
 }
+

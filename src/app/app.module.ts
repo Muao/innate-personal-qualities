@@ -1,9 +1,6 @@
-import { DinamicComponentLoaderService } from './services/dinamic-component-loader.service';
 import { Data } from './services/data.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +17,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { ResultPageComponent } from './result-page/result-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { InputDateFormComponent } from './input-date-form/input-date-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -30,11 +26,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     NotFoundComponent,
     MainPageComponent,
     ResultPageComponent,
-    InputDateFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatDatepickerModule,
@@ -61,14 +55,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 
   ],
   entryComponents: [
-    InputDateFormComponent
   ],
   exports: [
     MatButtonModule,
     MatDatepickerModule,
     MatFormFieldModule
   ],
-  providers: [Data, DinamicComponentLoaderService],
+  providers: [Data],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
