@@ -29,11 +29,9 @@ export class ChartComponent implements OnInit {
 
   public chartClicked({event, active}: { event: MouseEvent, active: {}[] }): void {
     const currEvent: string = event.type;
-    console.log(currEvent);
-  }
+    }
 
   public chartHovered({event, active}: { event: MouseEvent, active: {}[] }): void {
     const currEvent: string = event.type;
-    console.log(currEvent);
   }
 }

@@ -11,9 +11,7 @@ import { BirthDate } from '../entities/birthDate';
 })
 export class ResultPageComponent implements OnInit, OnDestroy {
 
-
-  @Input()
-  private personOutputData: PersonOutputData[];
+  public personOutputData: PersonOutputData[];
 
   public constructor(
     private route: ActivatedRoute,
