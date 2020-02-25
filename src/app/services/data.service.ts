@@ -16,8 +16,6 @@ import { Potential } from '../entities/potential';
 })
 export class Data {
 
-  private _nextId: number = 0;
-  private birthDateArray: BirthDate[] = [];
   private personOutputData: PersonOutputData[] = [];
   private years: Year[] = [
     new Year(1900, 7, 17, 17),
@@ -284,31 +282,6 @@ export class Data {
     return this.months.find((monss: Month) => monss.month === month);
   }
 
-  // public putToBirthDayArray(inputBirthDate: BirthDate): void {
-
-  //   const sameDatePickerIndex: number =
-  //     this.birthDateArray.findIndex((b: BirthDate) => (b.dataPickerId === inputBirthDate.dataPickerId));
-
-  //   if (sameDatePickerIndex !== -1) { // -1 if array haven't the same outputData picker id
-  //     this.birthDateArray.splice(sameDatePickerIndex, 1, inputBirthDate);
-  //   } else {
-  //     this.birthDateArray.push(inputBirthDate);
-  //   }
-  // }
-
-  // public nextId(): number {
-  //   this._nextId = this._nextId + 1;
-  //   return this._nextId;
-  // }
-
-  // public resetNextId(): void {
-  //   this._nextId = 0;
-  // }
-
-  // public getBirthdayArray(): BirthDate[] {
-  //   return this.birthDateArray;
-  // }
-
   public createResultUsersData(inputBirthDate: BirthDate): void {
 
     const code: Code =
@@ -353,6 +326,5 @@ export class Data {
 
   public clearPersonalOutputData(): void {
     this.personOutputData = [];
-    this.birthDateArray = [];
   }
 }

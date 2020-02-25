@@ -1,6 +1,7 @@
-import { Component, OnDestroy, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { DateAdapter } from '@angular/material';
 
 @Component({
   selector: 'app-main-page',
@@ -10,41 +11,34 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 export class MainPageComponent implements OnInit {
 
   public startDate: Date = new Date(1990, 0, 1);
-
-  public orderForm: FormGroup;
+  public parentForm: FormGroup;
   public items: FormArray;
 
   public constructor(
-    private formBuilder: FormBuilder,
-    private router: Router) {}
+    private fb: FormBuilder,
+    private router: Router,
+    private dateAdapter: DateAdapter<Date>) {
+      this.dateAdapter.setLocale(navigator.language); // getting locale from browser
+    }
 
   public ngOnInit(): void {
-    this.orderForm = this.formBuilder.group({
-      items: this.formBuilder.array([ this.createItem() ])
+    this.parentForm = this.fb.group({
+      items: this.fb.array([ this.createItem() ])
     });
-  }
-
-  public createItem(): FormGroup {
-    return this.formBuilder.group({
-      name: '',
-      date: '',
-    });
+    this.items = this.parentForm.get('items') as FormArray;
   }
 
   public addItem(): void {
-    this.items = this.orderForm.get('items') as FormArray;
     this.items.push(this.createItem());
   }
 
   public removeItem(id: number): void {
-    this.items = this.orderForm.get('items') as FormArray;
     this.items.removeAt(id);
   }
 
   public calculateButtonHandler(): void {
-    const resultArr: FormArray = this.orderForm.get('items') as FormArray;
     // tslint:disable-next-line: no-any
-    const resultVal: any = resultArr.getRawValue();
+    const resultVal: any = this.items.getRawValue();
 
     let queryParams: string = '{';
 
@@ -66,6 +60,13 @@ export class MainPageComponent implements OnInit {
   const result: any = JSON.parse(queryParams);
 
   this.router.navigate(['result'], {queryParams: result});
+    }
+
+    private createItem(): FormGroup {
+      return this.fb.group({
+        name: '',
+        date: '',
+      });
     }
 }
 

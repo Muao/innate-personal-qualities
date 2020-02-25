@@ -6,10 +6,10 @@
   1. тип личности я- мы по таблице беретца номер эмоционального контура
 
  -->
- <div id="group"  [formGroup]="orderForm">
+ <div id="group"  [formGroup]="parentForm">
 
  <div formArrayName="items"
-  *ngFor="let item of orderForm.get('items').controls; let i = index;">
+  *ngFor="let item of parentForm.get('items').controls; let i = index;">
   <div [formGroupName]="i">
     <mat-form-field class="line-padding-right">
       <input matInput placeholder="Input name" formControlName="name">
@@ -21,7 +21,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
     </mat-form-field>
-    <button mat-button color="warn" (click)="removeItem(i)">Remove</button>
+    <button *ngIf='items.length > 1' mat-button color="warn" (click)="removeItem(i)">Remove</button>
   </div>
   <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
 </div>
