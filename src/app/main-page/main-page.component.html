@@ -30,7 +30,7 @@
   </div>
   <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
 </div>
-<button mat-button [disabled]="!parentForm.valid" (click)="addItem()" >Add Person</button>
+<button mat-stroked-button color="primary" [disabled]="!parentForm.valid" (click)="addItem()" >+Add Person</button>
   <a> or </a>
-  <button mat-button color="primary" [disabled]="!parentForm.valid" (click)="calculateButtonHandler()">Calculate</button>
+  <button mat-raised-button color="primary" [disabled]="!parentForm.valid" (click)="calculateButtonHandler()">Calculate</button>
 </div>
