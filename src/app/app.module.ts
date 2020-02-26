@@ -18,6 +18,10 @@ import { MatCardModule } from '@angular/material/card';
 import { ResultPageComponent } from './result-page/result-page.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+
+registerLocaleData(localeRu, 'ru');
 
 @NgModule({
   declarations: [
@@ -54,6 +58,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     ])
 
   ],
+
   entryComponents: [
   ],
   exports: [

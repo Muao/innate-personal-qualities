@@ -13,13 +13,14 @@
   *ngFor="let item of parentForm.get('items')['controls']; let i = index;">
   <div [formGroupName]="i">
     <mat-form-field class="line-padding-right">
-      <input matInput placeholder="Input a name" formControlName="name">
+      <input matInput i18n-placeholder placeholder="Input a name" formControlName="name">
     </mat-form-field>
 
     <mat-form-field class="line-padding-right">
       <input readonly type="text"
       matInput [matDatepicker]="picker"
       [min]="minDate" [max]="maxDate"
+      i18n-placeholder
       placeholder="Choose a date of birth"
       formControlName="date"
       (click)="picker.open()">
@@ -30,7 +31,7 @@
   </div>
   <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
 </div>
-<button mat-stroked-button color="primary" [disabled]="!parentForm.valid" (click)="addItem()" >+Add Person</button>
-  <a> or </a>
-  <button mat-raised-button color="primary" [disabled]="!parentForm.valid" (click)="calculateButtonHandler()">Calculate</button>
+<button mat-stroked-button color="primary" [disabled]="!parentForm.valid" (click)="addItem()" i18n>+Add Person</button>
+  <a i18n> or </a>
+  <button mat-raised-button color="primary" [disabled]="!parentForm.valid" (click)="calculateButtonHandler()" i18n>Calculate</button>
 </div>

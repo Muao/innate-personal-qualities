@@ -30,6 +30,14 @@
             "scripts": []
           },
           "configurations": {
+            "ru": {
+              "aot": true,
+              "outputPath": "dist/dist/innate-personal-qualities-ru",
+              "i18nFile": "src/locale/messages.ru.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "ru",
+              "i18nMissingTranslation": "error"
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -67,6 +75,9 @@
             "browserTarget": "innate-personal-qualities:build"
           },
           "configurations": {
+            "ru": {
+              "browserTarget": "innate-personal-qualities:build:ru"
+            },
             "production": {
               "browserTarget": "innate-personal-qualities:build:production"
             }
