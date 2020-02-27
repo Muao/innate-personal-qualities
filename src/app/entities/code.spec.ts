@@ -1,5 +1,5 @@
-import { BirthDate } from './birthDate';
-import { Code } from './code';
+import { BirthDate } from '../entities/birthDate';
+import { Code } from '../entities/code';
 
 describe('calc period', () => {
 

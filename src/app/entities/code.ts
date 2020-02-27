@@ -1,5 +1,5 @@
 import { Calculator } from '../utilites/calculator';
-import { BirthDate } from './birthDate';
+import { BirthDate } from '../entities/birthDate';
 
 export class Code {
 
@@ -7,10 +7,10 @@ export class Code {
   private readonly month: number;
   private readonly year: number;
 
-  private _age: number;
+  private readonly _age: number;
   private _negativeCode: number[];
   private _positiveCode: number[];
-  private _currentPeriod: string[];
+  private readonly _currentPeriod: string[];
   private readonly _middleDigit: number;
   private readonly _period: number;
 
@@ -46,7 +46,7 @@ export class Code {
     return this._age;
   }
 
-  public get currentPeriod(): string[]{
+  public get currentPeriod(): string[] {
     return this._currentPeriod;
   }
 
@@ -54,9 +54,7 @@ export class Code {
 let chunk: number[] = this._negativeCode.slice(2);
     chunk = this.removeNines(chunk);
     const chunkLength: number = chunk.length;
-    const result: number = 60 / chunkLength;
-
-    return result;
+   return 60 / chunkLength;
   }
 
 

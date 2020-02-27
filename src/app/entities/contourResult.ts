@@ -1,8 +1,8 @@
 export class ContourResult {
-  private _contourName: string;
-  private _valueI: number;
-  private _valueII: number;
-  private _description: string;
+  private readonly _contourName: string;
+  private readonly _valueI: number;
+  private readonly _valueII: number;
+  private readonly _description: string;
 
   public constructor(contourName: string, valueI: number, valueII: number, description: string) {
     this._contourName = contourName;

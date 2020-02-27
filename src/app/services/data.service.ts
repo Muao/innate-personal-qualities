@@ -6,7 +6,7 @@ import { Contour } from '../entities/contour';
 import { ContourResult } from '../entities/contourResult';
 import { BirthDate } from '../entities/birthDate';
 import { Code } from '../entities/code';
-import { ContoursProcessor } from '../utilites/ContoursProcessor';
+import { ContoursProcessor } from '../utilites/contoursProcessor';
 import { ChartDataSets } from 'chart.js';
 import { Observable, of } from 'rxjs';
 import { Potential } from '../entities/potential';
