@@ -1,4 +1,4 @@
-import { ContourResult } from './contourResult';
+import { ContourResult } from '../entities/contourResult';
 
 export class Potential {
 
