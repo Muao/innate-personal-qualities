@@ -13,25 +13,25 @@
   *ngFor="let item of parentForm.get('items')['controls']; let i = index;">
   <div [formGroupName]="i">
     <mat-form-field class="line-padding-right">
-      <input matInput i18n-placeholder placeholder="Input a name" formControlName="name">
+      <input matInput placeholder="{{'INPUT_NAME' | translate}}"
+             formControlName="name">
     </mat-form-field>
 
     <mat-form-field class="line-padding-right">
       <input readonly type="text"
       matInput [matDatepicker]="picker"
       [min]="minDate" [max]="maxDate"
-      i18n-placeholder
-      placeholder="Choose a date of birth"
+      placeholder= "{{'DATE' | translate}}"
       formControlName="date"
       (click)="picker.open()">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker startView="multi-year" [startAt]="startDate"></mat-datepicker>
     </mat-form-field>
-    <button *ngIf='items.length > 1' mat-button color="warn" (click)="removeItem(i)">Remove</button>
+    <button *ngIf='items.length > 1' mat-button color="warn" (click)="removeItem(i)">{{ 'REMOVE' | translate }}</button>
   </div>
   <!-- Chosen name: {{ orderForm.controls.items.controls[i].controls.name.value }} -->
 </div>
-<button mat-stroked-button color="primary" [disabled]="!parentForm.valid" (click)="addItem()" i18n>+Add Person</button>
-  <a i18n> or </a>
-  <button mat-raised-button color="primary" [disabled]="!parentForm.valid" (click)="calculateButtonHandler()" i18n>Calculate</button>
+<button mat-stroked-button color="primary" [disabled]="!parentForm.valid" (click)="addItem()">{{ 'ADD_P' | translate }}</button>
+  <a> {{ 'OR' | translate }} </a>
+  <button mat-raised-button color="primary" [disabled]="!parentForm.valid" (click)="calculateButtonHandler()">{{ 'CALC' | translate }}</button>
 </div>
