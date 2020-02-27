@@ -118,7 +118,8 @@
           "configurations": {
             "production": {
               "devServerTarget": "innate-personal-qualities:serve:production"
-            }
+            },
+            "baseHref": "https://muao.github.io/innate-personal-qualities/"
           }
         }
       }
