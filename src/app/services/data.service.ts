@@ -10,6 +10,7 @@ import { ContoursProcessor } from '../utilites/ContoursProcessor';
 import { ChartDataSets } from 'chart.js';
 import { Observable, of } from 'rxjs';
 import { Potential } from '../entities/potential';
+import {Label} from 'ng2-charts';
 
 @Injectable({
   providedIn: 'root'
@@ -322,6 +323,10 @@ export class Data {
       }
     );
     return radarChartData;
+  }
+
+  public get radarChartLabels(): string[] {
+     return ['MULADH', 'SVADHI', 'MANIPUR', 'ANAHAT', 'VISHUDH', 'AJNA'];
   }
 
   public clearPersonalOutputData(): void {

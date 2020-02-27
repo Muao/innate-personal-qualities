@@ -20,7 +20,7 @@ export class MainPageComponent implements OnInit {
   public constructor(
     private fb: FormBuilder,
     private router: Router,
-    translate: TranslateService,
+    public translate: TranslateService,
     private dateAdapter: DateAdapter<Date>) {
       this.dateAdapter.setLocale(navigator.language); // getting locale from browser
     // this language will be used as a fallback when a translation isn't found in the current language

@@ -4,5 +4,14 @@
   "ADD_P": "+Add Person",
   "REMOVE": "Remove",
   "DATE": "Choose a date of birth",
-  "INPUT_NAME": "Input a name"
+  "INPUT_NAME": "Input a name",
+
+  "NEW_CALC": "New Calculation",
+
+  "MULADH": "Muladhara",
+  "SVADHI": "Svadhishthana",
+  "MANIPUR": "Manipura",
+  "ANAHAT": "Anahata",
+  "VISHUDH": "Vishuddha",
+  "AJNA": "Ajna"
 }
