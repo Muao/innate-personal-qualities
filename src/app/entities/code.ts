@@ -57,20 +57,10 @@ let chunk: number[] = this._negativeCode.slice(2);
    return 60 / chunkLength;
   }
 
-
-  private removeNines(input: number[]): number[] {
-    if (input.includes(9)) {
-      const index: number = input.indexOf(9);
-      input.splice(index, 1);
-      this.removeNines(input);
-    }
-    return input;
-  }
-
-  private calculateAge (birthMonth: number, birthDay: number, birthYear: number): number {
+  public calculateAge ( birthDay: number, birthMonth: number, birthYear: number): number {
     const today: Date = new Date();
     const todayYear: number = today.getFullYear();
-    const todayMonth: number = today.getMonth();
+    const todayMonth: number = today.getMonth() + 1;
     const todayDay: number = today.getDate();
     let age: number = todayYear - birthYear;
 
@@ -82,6 +72,15 @@ let chunk: number[] = this._negativeCode.slice(2);
     }
     return age;
 }
+
+  private removeNines(input: number[]): number[] {
+    if (input.includes(9)) {
+      const index: number = input.indexOf(9);
+      input.splice(index, 1);
+      this.removeNines(input);
+    }
+    return input;
+  }
 
 private currentPeriodCalculation(age: number, period: number, negativeCode: number[]): string[] {
 const result: string[] = [];
