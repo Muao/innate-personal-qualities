@@ -328,6 +328,10 @@ export class Data {
      return ['MULADH', 'SVADHI', 'MANIPUR', 'ANAHAT', 'VISHUDH', 'AJNA'];
   }
 
+  public get tickNames(): string[] {
+    return ['MIN', 'NORM', '', 'MAX'];
+  }
+
   public clearPersonalOutputData(): void {
     this.personOutputData = [];
   }
