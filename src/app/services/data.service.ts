@@ -329,7 +329,7 @@ export class Data {
   }
 
   public get tickNames(): string[] {
-    return ['MIN', 'NORM', '', 'MAX'];
+    return ['', 'MIN', 'NORM', ' ', 'MAX'];
   }
 
   public clearPersonalOutputData(): void {

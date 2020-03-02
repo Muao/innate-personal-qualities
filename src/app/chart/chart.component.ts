@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ChartDataSets, ChartOptions, ChartType, RadialChartOptions, RadialLinearScale} from 'chart.js';
+import { ChartDataSets, ChartOptions, ChartType, RadialChartOptions, RadialLinearScale } from 'chart.js';
 import { Data } from '../services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -10,15 +10,20 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ChartComponent implements OnInit {
 
-  public radarTickNames: string[] = [];
-  public radarChartOptions: RadialChartOptions;
+  private static _radarTickNames: string[] = [];
 
+  public radarChartOptions: RadialChartOptions;
 
   public radarChartLabels: string[] = [];
 
   public radarChartData: ChartDataSets[];
 
   public radarChartType: ChartType = 'radar';
+
+  public static get radarTickNames(): string[] {
+
+    return this._radarTickNames;
+  }
 
   public constructor(
     private dataService: Data,
@@ -32,7 +37,7 @@ export class ChartComponent implements OnInit {
       );
 
     translate.get(dataService.tickNames).subscribe( (values: string[]) => {
-        this.radarTickNames = Object.keys(values).map((key: string) => values[key]);
+        ChartComponent._radarTickNames = Object.keys(values).map((key: string) => values[key]);
       }
     );
   }
@@ -47,12 +52,12 @@ export class ChartComponent implements OnInit {
           beginAtZero: true,
           max: 99,
           stepSize: 25,
-          // callback: function(value: string, index: number) {
-          //   return this.radarTickNames[index];
-          // }
+          callback(value: string, index: number): string {
+            return value + ' ' + ChartComponent._radarTickNames[index];
+          }
         },
         gridLines: {
-          color: ['red', 'green', 'grey', 'indigo']
+          color: ['rgb(255,0,0, 0.5)', 'rgb(0,128,0, 0.5)', 'rgb(128,128,128, 0.5)', 'rgb(128,0,128, 0.5)']
         }
       }
     };
