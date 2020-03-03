@@ -10,8 +10,6 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ChartComponent implements OnInit {
 
-  private static _radarTickNames: string[] = [];
-
   public radarChartOptions: RadialChartOptions;
 
   public radarChartLabels: string[] = [];
@@ -20,40 +18,44 @@ export class ChartComponent implements OnInit {
 
   public radarChartType: ChartType = 'radar';
 
-  public static get radarTickNames(): string[] {
-
-    return this._radarTickNames;
-  }
+  private radarTickNames: string[] = [];
 
   public constructor(
     private dataService: Data,
     public translate: TranslateService) {
     translate.setDefaultLang('en');
     translate.use(navigator.language);
-      // internationalization of radar chart labels
-      translate.get(dataService.radarChartLabels).subscribe( (values: string[]) => {
-          this.radarChartLabels = Object.keys(values).map((key: string) => values[key]);
-        }
-      );
-
-    translate.get(dataService.tickNames).subscribe( (values: string[]) => {
-        ChartComponent._radarTickNames = Object.keys(values).map((key: string) => values[key]);
-      }
-    );
   }
 
   public ngOnInit(): void {
+
+    // internationalization of radar chart labels
+    this.translate.get(this.dataService.radarChartLabels).subscribe( (values: string[]) => {
+        this.radarChartLabels = Object.keys(values).map((key: string) => values[key]);
+      }
+    );
+
+    this.translate.get(this.dataService.tickNames).subscribe( (values: string[]) => {
+        this.radarTickNames = Object.keys(values).map((key: string) => values[key]);
+      }
+    );
+
     this.radarChartData = this.dataService.getRadarChartData();
+
+    const self: ChartComponent = this;
+
     this.radarChartOptions = {
+
       responsive: true,
-      maintainAspectRatio: true,
+      // maintainAspectRatio: true,
       scale: {
         ticks: {
           beginAtZero: true,
+          labelOffset: 3,
           max: 99,
           stepSize: 25,
           callback(value: string, index: number): string {
-            return value + ' ' + ChartComponent._radarTickNames[index];
+            return value + ' ' + self.radarTickNames[index];
           }
         },
         gridLines: {
