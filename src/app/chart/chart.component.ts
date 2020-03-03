@@ -60,6 +60,9 @@ export class ChartComponent implements OnInit {
         },
         gridLines: {
           color: ['rgb(255,0,0, 0.5)', 'rgb(0,128,0, 0.5)', 'rgb(128,128,128, 0.5)', 'rgb(128,0,128, 0.5)']
+        },
+        pointLabels: {
+          fontSize: 14
         }
       }
     };

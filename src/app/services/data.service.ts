@@ -308,16 +308,23 @@ export class Data {
         radarChartData.push(
           {
             data: [
-              data.contourResult[0].valueI,
-              data.contourResult[0].valueII,
-              data.contourResult[1].valueI,
-              data.contourResult[1].valueII,
-              data.contourResult[2].valueI,
-              data.contourResult[2].valueII
+              null,
+              data.contourResult[2].valueII, // ajna
+              data.contourResult[1].valueI, // manipura
+              data.contourResult[0].valueI, // muladhara
+              data.contourResult[0].valueII, // svadhistana
+              data.contourResult[1].valueII, // anahata
+              data.contourResult[2].valueI, // vishudha
+
             ],
             label: data.name,
             backgroundColor: data.color,
-            borderColor: data.color
+            borderColor: data.color,
+            pointBackgroundColor: data.color,
+            pointHoverBorderColor: 'black',
+            pointRadius: 6,
+            pointHoverRadius: 7,
+            spanGaps: true
           });
       }
     );
@@ -325,7 +332,8 @@ export class Data {
   }
 
   public get radarChartLabels(): string[] {
-     return ['MULADH', 'SVADHI', 'MANIPUR', 'ANAHAT', 'VISHUDH', 'AJNA'];
+     // return ['', 'MULADH', 'SVADHI', 'MANIPUR', 'ANAHAT', 'VISHUDH', 'AJNA'];
+     return [null, 'AJNA', 'MANIPUR', 'MULADH', 'SVADHI', 'ANAHAT', 'VISHUDH'];
   }
 
   public get tickNames(): string[] {
