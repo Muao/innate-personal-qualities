@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule, MatNativeDateModule } from '@angular/material';
+import { MatInputModule, MatNativeDateModule, MatTabsModule } from '@angular/material';
 import { ChartComponent } from './chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -45,6 +45,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     MatCheckboxModule,
     HttpClientModule,
     MatCardModule,
+    MatTabsModule,
     FlexLayoutModule,
     ReactiveFormsModule,
     TranslateModule.forRoot({

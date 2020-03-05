@@ -11,7 +11,6 @@ import { ChartDataSets } from 'chart.js';
 import { Observable, of } from 'rxjs';
 import { Potential } from '../entities/potential';
 import { CodeExplanation } from '../entities/codeExplanation';
-import { Explanation } from '../entities/explanation';
 
 @Injectable({
   providedIn: 'root'

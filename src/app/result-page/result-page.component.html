@@ -14,6 +14,8 @@
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
+        <mat-tab-group>
+          <mat-tab [label] = "'WORKINGOFF' | translate">
         {{outputData.code.negativeCode.join(" ")}}<br>
         {{outputData.code.middleDigit}}<br>
         {{outputData.code.positiveCode.join(" ")}}<br>
@@ -21,8 +23,17 @@
         <br>
         {{'PERIOD_EX' | translate}}
         <br>
-        Период: <b>{{outputData.code.period}}</b> лет <br>
+        {{"DURATION" | translate}}: <b>{{outputData.code.period}}</b> {{"YEARS" | translate}} <br>
 
+        <p *ngFor='let explonation of outputData.explanation'>
+          {{explonation.period | translate}}: <br>
+          {{"WORKINGOFF" | translate}}: <b>{{explonation.workingOff | translate}}</b>.
+          {{"COMPLEX" | translate}}: <b>{{explonation.workingOffGrade}}</b> <br>
+          {{"COMPENS" | translate}}: <b>{{explonation.offset | translate}}</b>
+        </p>
+      </mat-tab>
+
+      <mat-tab [label] = "'CONTOURS' | translate">
         Физический контур: <b>{{outputData.contourResult[0].description}}</b><br>
         Физический потенциал: <b>{{outputData.potential.physical}}/198</b><br>
         Эмоциональный контур: <b>{{outputData.contourResult[1].description}}</b><br>
@@ -34,6 +45,8 @@
         Мужской потенциал: <b>{{outputData.potential.man}}</b><br>
         Женский потенциал: <b>{{outputData.potential.woman}}</b><br>
         Потенциал ассиметрии: <b>{{outputData.potential.asymmetry}}</b><br>
+        </mat-tab>
+      </mat-tab-group>
       </mat-card-content>
     </mat-card>
   </div>

@@ -15,23 +15,31 @@ export class CodeExplanation {
     const result: Explanation[] = [];
 
     let periodCounter: number = 0;
-    for (let i: number = 0; i < counter; i++) {
-
+    for (let i: number = 2; i <= counter - 1; i++) {
+      if (negativeCode[i] !== 9) {
       const periods: string = periodCounter + ' - ' + (periodCounter += period);
-      const workingOff: string = negativeCode[i] + '';
-      const workingOffGrade: string = positiveCode + '/9';
-      const offset: string = positiveCode + '';
 
       result.push(
         new Explanation(
         periods,
-        workingOff,
-        workingOffGrade,
-        offset
+        negativeCode[i],
+        positiveCode[i]
       ));
     }
+    }
+
+    result.unshift(new Explanation(
+      'PERIN',
+      negativeCode[1],
+      positiveCode[1]
+    ));
+
+    result.unshift(new Explanation(
+      'MAIN',
+      negativeCode[0],
+      positiveCode[0]
+    ));
 
     return result;
   }
-
 }

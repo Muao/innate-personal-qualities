@@ -8,19 +8,30 @@
 
   "NEW_CALC": "New Calculation",
 
+  "MAIN": "Main incarnation working off",
+  "PERIN": "Perinatal  period",
   "MULADH": "Muladhara",
   "SVADHI": "Svadhishthana",
   "MANIPUR": "Manipura",
   "ANAHAT": "Anahata",
   "VISHUDH": "Vishuddha",
   "AJNA": "Ajna",
+  "SAHASRARA": "Sahasrara",
+  "INFINITY": "Lost of life sence",
 
   "MIN": "Min",
   "NORM": "Normal",
   "MAX": "Max",
 
-  /*result-page*/
+
 
   "YEAR_OLD": "years old",
-  "PERIOD_EX": "Period Explanation"
+  "PERIOD_EX": "Period Explanation",
+
+  "YEARS": "years",
+  "DURATION": "Working off period duration",
+  "WORKINGOFF": "Working off",
+  "CONTOURS": "Contours",
+  "COMPLEX": "Complexity",
+  "COMPENS": "Compensation"
 }
