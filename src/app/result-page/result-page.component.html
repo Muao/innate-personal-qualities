@@ -10,7 +10,7 @@
               [style.background-color]="outputData.color">
       <mat-card-header>
         <mat-card-title>
-          {{outputData.name}}
+          {{outputData.name}}: {{outputData.code.age}} {{'YEAR_OLD' | translate}}
         </mat-card-title>
       </mat-card-header>
       <mat-card-content>
@@ -18,10 +18,11 @@
         {{outputData.code.middleDigit}}<br>
         {{outputData.code.positiveCode.join(" ")}}<br>
         {{outputData.code.currentPeriod.join(" ")}} - текущий период обозначен символом ^<br>
-
+        <br>
+        {{'PERIOD_EX' | translate}}
         <br>
         Период: <b>{{outputData.code.period}}</b> лет <br>
-        Возраст: <b>{{outputData.code.age}}</b> лет <br>
+
         Физический контур: <b>{{outputData.contourResult[0].description}}</b><br>
         Физический потенциал: <b>{{outputData.potential.physical}}/198</b><br>
         Эмоциональный контур: <b>{{outputData.contourResult[1].description}}</b><br>

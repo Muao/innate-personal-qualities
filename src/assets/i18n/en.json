@@ -17,5 +17,10 @@
 
   "MIN": "Min",
   "NORM": "Normal",
-  "MAX": "Max"
+  "MAX": "Max",
+
+  /*result-page*/
+
+  "YEAR_OLD": "years old",
+  "PERIOD_EX": "Period Explanation"
 }

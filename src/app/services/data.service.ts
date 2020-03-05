@@ -10,6 +10,8 @@ import { ContoursProcessor } from '../utilites/contoursProcessor';
 import { ChartDataSets } from 'chart.js';
 import { Observable, of } from 'rxjs';
 import { Potential } from '../entities/potential';
+import { CodeExplanation } from '../entities/codeExplanation';
+import { Explanation } from '../entities/explanation';
 
 @Injectable({
   providedIn: 'root'
@@ -293,8 +295,11 @@ export class Data {
     const potential: Potential =
       new Potential(contourResult);
 
+    const codeExplanation: CodeExplanation =
+      new CodeExplanation(code);
+
     this.personOutputData.push(
-      new PersonOutputData(code, contourResult, potential, inputBirthDate.name)
+      new PersonOutputData(code, codeExplanation.explanation, contourResult, potential, inputBirthDate.name)
     );
   }
 
