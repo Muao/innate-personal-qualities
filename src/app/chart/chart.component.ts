@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataSets, ChartOptions, ChartType, RadialChartOptions, RadialLinearScale } from 'chart.js';
+import { ChartData, ChartDataSets, ChartTooltipItem, ChartType, RadialChartOptions } from 'chart.js';
 import { Data } from '../services/data.service';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -62,10 +62,24 @@ export class ChartComponent implements OnInit {
           color: ['rgb(255,0,0, 0.5)', 'rgb(0,128,0, 0.5)', 'rgb(128,128,128, 0.5)', 'rgb(128,0,128, 0.5)']
         },
         pointLabels: {
-          fontSize: 14
+          fontSize: 14,
+          fontColor: [null, 'rgb(64,40,152, 0.9)', 'rgb(254, 222, 7, 0.9)', 'rgb(236,80,102, 0.9)', 'rgb(239,155,108, 0.9)', 'rgb(136,169,88, 0.9)', 'rgb(115,202,229, 0.9)']
+        }
+      },
+      tooltips: {
+        enabled: true,
+        mode: 'index',
+        callbacks: {
+          title(item: ChartTooltipItem[], data: ChartData): string {
+            return '';
+          },
+          // label(tooltipItems: ChartTooltipItem, data: ChartData): string {
+          //   return tooltipItems.x + "";
+          // }
         }
       }
     };
+
   }
 
   public chartClicked({event, active}: { event: MouseEvent, active: {}[] }): void {
