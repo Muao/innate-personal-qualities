@@ -13,5 +13,9 @@
   "MANIPUR": "Manipura",
   "ANAHAT": "Anahata",
   "VISHUDH": "Vishuddha",
-  "AJNA": "Ajna"
+  "AJNA": "Ajna",
+
+  "MIN": "Min",
+  "NORM": "Normal",
+  "MAX": "Max"
 }
