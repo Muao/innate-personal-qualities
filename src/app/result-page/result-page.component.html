@@ -1,8 +1,8 @@
 <div id="results">
 
-<app-chart></app-chart>
+  <app-chart></app-chart>
 
-<div fxLayout="row" fxLayoutAlign="center center"  *ngIf="personOutputData">
+  <div fxLayout="row" fxLayoutAlign="center center" *ngIf="personOutputData">
     <mat-card *ngFor='let outputData of personOutputData'
               style="margin:10px;"
               fxLayoutWrap class="cards"
@@ -15,38 +15,48 @@
       </mat-card-header>
       <mat-card-content>
         <mat-tab-group>
-          <mat-tab [label] = "'WORKINGOFF' | translate">
-        {{outputData.code.negativeCode.join(" ")}}<br>
-        {{outputData.code.middleDigit}}<br>
-        {{outputData.code.positiveCode.join(" ")}}<br>
-        {{outputData.code.currentPeriod.join(" ")}} - текущий период обозначен символом ^<br>
-        <br>
-        {{'PERIOD_EX' | translate}}
-        <br>
-        {{"DURATION" | translate}}: <b>{{outputData.code.period}}</b> {{"YEARS" | translate}} <br>
+          <mat-tab [label]="'WORKINGOFF' | translate">
+            <h1></h1>
+            <div *ngFor='let explonation of outputData.explanation; index as i'>
+              {{i + 1}}) <u>{{explonation.period | translate}} <span *ngIf="i > 1"> {{"YEARS" | translate}}</span></u>:
+              <br>
+              {{"WORKINGOFF" | translate}}: <b>{{explonation.workingOff | translate}}</b>.
+              {{"COMPLEX" | translate}}: <b>{{explonation.workingOffGrade}}</b> <br>
+              {{"COMPENS" | translate}}: <b>{{explonation.offset | translate}}</b><br>
+              <hr *ngIf="i < outputData.explanation.length -1 " style="width: 10%">
+            </div>
+            <hr>
+            {{"DURATION" | translate}}: <b>{{outputData.code.period}}</b> {{"YEARS" | translate}}
+            <hr style="width: 10%">
+            <div>
+              {{outputData.code.negativeCode.join(" ")}}<br>
+              {{outputData.code.middleDigit}}<br>
+              {{outputData.code.positiveCode.join(" ")}}<br>
+              {{outputData.code.currentPeriod.join(" ")}} - текущий период обозначен символом ^
+            </div>
+          </mat-tab>
 
-        <p *ngFor='let explonation of outputData.explanation'>
-          {{explonation.period | translate}}: <br>
-          {{"WORKINGOFF" | translate}}: <b>{{explonation.workingOff | translate}}</b>.
-          {{"COMPLEX" | translate}}: <b>{{explonation.workingOffGrade}}</b> <br>
-          {{"COMPENS" | translate}}: <b>{{explonation.offset | translate}}</b>
-        </p>
-      </mat-tab>
-
-      <mat-tab [label] = "'CONTOURS' | translate">
-        Физический контур: <b>{{outputData.contourResult[0].description}}</b><br>
-        Физический потенциал: <b>{{outputData.potential.physical}}/198</b><br>
-        Эмоциональный контур: <b>{{outputData.contourResult[1].description}}</b><br>
-        Эмоциональный потенциал: <b>{{outputData.potential.emotional}}/198</b><br>
-        Интеллектуальный контур: <b>{{outputData.contourResult[2].description}}</b><br>
-        Интелелктуальный потенциал: <b>{{outputData.potential.intellectual}}/198</b><br>
-        Левополушарный интеллект: <b>{{outputData.potential.leftBrain}}/198</b><br>
-        Правополушарный интеллект: <b>{{outputData.potential.rightBrain}}/198</b><br>
-        Мужской потенциал: <b>{{outputData.potential.man}}</b><br>
-        Женский потенциал: <b>{{outputData.potential.woman}}</b><br>
-        Потенциал ассиметрии: <b>{{outputData.potential.asymmetry}}</b><br>
-        </mat-tab>
-      </mat-tab-group>
+          <mat-tab [label]="'CONTOURS' | translate">
+            <h1></h1>
+            <div>
+              <p>Физический контур: <b>{{outputData.contourResult[0].description}}</b></p>
+              <p>Физический потенциал: <b>{{outputData.potential.physical}}/198</b></p>
+              <hr style="width: 10%">
+              <p>Эмоциональный контур: <b>{{outputData.contourResult[1].description}}</b></p>
+              <p>Эмоциональный потенциал: <b>{{outputData.potential.emotional}}/198</b></p>
+              <hr style="width: 10%">
+              <p>Интеллектуальный контур: <b>{{outputData.contourResult[2].description}}</b></p>
+              <p>Интелелктуальный потенциал: <b>{{outputData.potential.intellectual}}/198</b></p>
+              <p>Левополушарный интеллект: <b>{{outputData.potential.leftBrain}}/198</b></p>
+              <p>Правополушарный интеллект: <b>{{outputData.potential.rightBrain}}/198</b></p>
+              <hr style="width: 10%">
+              <p>Мужской потенциал: <b>{{outputData.potential.man}}</b></p>
+              <p>Женский потенциал: <b>{{outputData.potential.woman}}</b></p>
+              <hr style="width: 10%">
+              <p>Потенциал ассиметрии: <b>{{outputData.potential.asymmetry}}</b></p>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
       </mat-card-content>
     </mat-card>
   </div>
