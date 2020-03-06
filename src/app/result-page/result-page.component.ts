@@ -18,10 +18,8 @@ export class ResultPageComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private dataService: Data,
     public translate: TranslateService) {
-    // this language will be used as a fallback when a translation isn't found in the current language
-    translate.setDefaultLang('en');
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
-    translate.use(navigator.language);
+    const browserLang: string = translate.getBrowserLang();
+    translate.use(browserLang);
   }
 
   public ngOnInit(): void {

@@ -8,7 +8,7 @@
 
   "NEW_CALC": "New Calculation",
 
-  "MAIN": "Main incarnation working off",
+  "MAIN": "Main Incarnation Working Off",
   "PERIN": "Perinatal  period",
   "MULADH": "Muladhara",
   "SVADHI": "Svadhishthana",
@@ -17,20 +17,22 @@
   "VISHUDH": "Vishuddha",
   "AJNA": "Ajna",
   "SAHASRARA": "Sahasrara",
-  "INFINITY": "Lost of life sence",
+  "INFINITY": "Lost of life sense",
 
   "MIN": "Min",
   "NORM": "Normal",
   "MAX": "Max",
 
+  "CAPAS": "Innate Chakras Capacity",
+  "CURRENT": "Current Period",
+  "MARKERED": "The current period is marked with ^",
 
-
-  "YEAR_OLD": "years old",
+  "YEAR_OLD": "Years old",
   "PERIOD_EX": "Period Explanation",
 
   "YEARS": "years",
-  "DURATION": "Working off each period duration",
-  "WORKINGOFF": "Working off",
+  "DURATION": "Working Off Each Period Duration",
+  "WORKINGOFF": "Life Working Off",
   "CONTOURS": "Innate Qualities",
   "COMPLEX": "Complexity",
   "COMPENS": "Compensation"

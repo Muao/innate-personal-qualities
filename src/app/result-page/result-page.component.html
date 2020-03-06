@@ -18,11 +18,14 @@
           <mat-tab [label]="'WORKINGOFF' | translate">
             <h1></h1>
             <div *ngFor='let explonation of outputData.explanation; index as i'>
-              {{i + 1}}) <u>{{explonation.period | translate}} <span *ngIf="i > 1"> {{"YEARS" | translate}}</span></u>:
-              <br>
-              {{"WORKINGOFF" | translate}}: <b>{{explonation.workingOff | translate}}</b>.
-              {{"COMPLEX" | translate}}: <b>{{explonation.workingOffGrade}}</b> <br>
-              {{"COMPENS" | translate}}: <b>{{explonation.offset | translate}}</b><br>
+              <div [ngStyle]="explonation.currentPeriod && { 'color' : 'blue'}">
+                {{i + 1}}) <u>{{explonation.period | translate}} <span *ngIf="i > 1"> {{"YEARS" | translate}}</span></u>:
+                <span *ngIf="explonation.currentPeriod"><--{{"CURRENT" | translate}}</span>
+                <br>
+                {{"WORKINGOFF" | translate}}: <b>{{explonation.workingOff | translate}}</b>.
+                {{"COMPLEX" | translate}}: <b>{{explonation.workingOffGrade}}</b><br>
+                {{"COMPENS" | translate}}: <b>{{explonation.offset | translate}}</b><br>
+              </div>
               <hr *ngIf="i < outputData.explanation.length -1 " style="width: 10%">
             </div>
             <hr>
@@ -32,13 +35,22 @@
               {{outputData.code.negativeCode.join(" ")}}<br>
               {{outputData.code.middleDigit}}<br>
               {{outputData.code.positiveCode.join(" ")}}<br>
-              {{outputData.code.currentPeriod.join(" ")}} - текущий период обозначен символом ^
+              {{outputData.code.currentPeriod.join(" ")}} - {{"MARKERED" | translate}}
             </div>
           </mat-tab>
 
           <mat-tab [label]="'CONTOURS' | translate">
             <h1></h1>
             <div>
+              <p><u>{{"CAPAS" | translate}}</u>:</p>
+
+              <p>{{"AJNA" | translate}}: <strong>{{outputData.contourResult[2].valueII}}/99</strong></p>
+              <p>{{"VISHUDH" | translate}}: <b>{{outputData.contourResult[2].valueI}}/99</b></p>
+              <p>{{"ANAHAT" | translate}}: <b>{{outputData.contourResult[1].valueII}}/99</b></p>
+              <p>{{"MANIPUR" | translate}}: <b>{{outputData.contourResult[1].valueI}}/99</b></p>
+              <p>{{"SVADHI" | translate}}: <b>{{outputData.contourResult[0].valueII}}/99</b></p>
+              <p>{{"MULADH" | translate}}: <b>{{outputData.contourResult[0].valueI}}/99</b></p>
+              <hr>
               <p>Физический контур: <b>{{outputData.contourResult[0].description}}</b></p>
               <p>Физический потенциал: <b>{{outputData.potential.physical}}/198</b></p>
               <hr style="width: 10%">
