@@ -1,0 +1,39 @@
+{
+  "OR": "or",
+  "CALC": "Calculate",
+  "ADD_P": "+Add Person",
+  "REMOVE": "Remove",
+  "DATE": "Choose a date of birth",
+  "INPUT_NAME": "Input a name",
+
+  "NEW_CALC": "New Calculation",
+
+  "MAIN": "Main Incarnation Working Off",
+  "PERIN": "Perinatal  period",
+  "MULADH": "Muladhara",
+  "SVADHI": "Svadhishthana",
+  "MANIPUR": "Manipura",
+  "ANAHAT": "Anahata",
+  "VISHUDH": "Vishuddha",
+  "AJNA": "Ajna",
+  "SAHASRARA": "Sahasrara",
+  "INFINITY": "Lost of life sense",
+
+  "MIN": "Min",
+  "NORM": "Normal",
+  "MAX": "Max",
+
+  "CAPAS": "Innate Chakras Capacity",
+  "CURRENT": "Current Period",
+  "MARKERED": "The current period is marked with ^",
+
+  "YEAR_OLD": "Years old",
+  "PERIOD_EX": "Period Explanation",
+
+  "YEARS": "years",
+  "DURATION": "Working Off Each Period Duration",
+  "WORKINGOFF": "Life Working Off",
+  "CONTOURS": "Innate Qualities",
+  "COMPLEX": "Complexity",
+  "COMPENS": "Compensation"
+}
