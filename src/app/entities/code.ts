@@ -3,9 +3,10 @@ import { BirthDate } from '../entities/birthDate';
 
 export class Code {
 
-  private readonly day: number;
-  private readonly month: number;
-  private readonly year: number;
+  private readonly _day: number;
+  private readonly _month: number;
+  private readonly _year: number;
+  private _periodInYears: string[];
 
   private readonly _age: number;
   private _negativeCode: number[];
@@ -15,15 +16,32 @@ export class Code {
   private readonly _period: number;
 
   public constructor(birthDate: BirthDate) {
-    this.day = birthDate.day;
-    this.month = birthDate.month;
-    this.year = birthDate.year;
+    this._day = birthDate.day;
+    this._month = birthDate.month;
+    this._year = birthDate.year;
     this._middleDigit = Calculator.sumDigitsIn(this.day + this.month + this.year);
     this._negativeCode = this.calcNegativeCode();
     this._positiveCode = this.calcPositiveCode();
     this._period = this.calcPeriod();
     this._age = this.calculateAge(this.day, this.month, this.year);
     this._currentPeriod = this.currentPeriodCalculation(this._age, this._period, this._negativeCode);
+    this._periodInYears = this.calcPeriodInYears(this._year, this._period, this._negativeCode);
+  }
+
+  public get day(): number {
+    return this._day;
+  }
+
+  public get month(): number {
+    return this._month;
+  }
+
+  public get year(): number {
+    return this._year;
+  }
+
+  public get periodInYears(): string[] {
+    return this._periodInYears;
   }
 
   public get negativeCode(): number[] {
@@ -120,4 +138,19 @@ return result;
   private calcPositiveCode(): number[] {
     return this._positiveCode = this.negativeCode.map((el: number) => Calculator.sumDigitsIn(el + this._middleDigit));
   }
+
+  private  calcPeriodInYears(_year: number, _period: number, _negativeCode: number[]): string[] {
+      const result: string[] = [];
+      let counter: number = _year;
+      result.push(''); // main life working off
+      result.push(''); // perenatal period
+    for (let index: number = 2; index < _negativeCode.length; index++) {
+      const element: number = _negativeCode[index];
+      if (element !== 9) {
+          result.push(counter + ' - ' + (counter += _period));
+      }
+    }
+    return result;
+  }
+
 }
