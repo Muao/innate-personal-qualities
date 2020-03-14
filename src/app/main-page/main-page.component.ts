@@ -1,3 +1,4 @@
+import { CounterService } from '../services/counter.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -16,13 +17,15 @@ export class MainPageComponent implements OnInit {
   public maxDate: Date = new Date(2022, 11, 31);
   public parentForm: FormGroup;
   public items: FormArray;
+  public counter: number;
 
   public constructor(
+    private counterService: CounterService,
     private fb: FormBuilder,
     private router: Router,
     public translate: TranslateService,
     private dateAdapter: DateAdapter<Date>) {
-      this.dateAdapter.setLocale(navigator.language); // getting locale from browser
+    this.dateAdapter.setLocale(navigator.language); // getting locale from browser
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('en');
     // the lang to use, if the lang isn't available, it will use the current loader to get them
@@ -30,6 +33,10 @@ export class MainPageComponent implements OnInit {
     }
 
   public ngOnInit(): void {
+    this.counterService.getCounter().subscribe(action => {
+      this.counter = action.payload.val().count;
+    });
+    
     this.parentForm = this.fb.group({
       items: this.fb.array([ this.createItem() ])
     });

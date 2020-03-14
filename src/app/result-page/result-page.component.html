@@ -1,7 +1,7 @@
 <div id="results">
 
   <app-chart></app-chart>
-
+  <div *ngIf="counter" >counter: {{counter}}</div>
   <div fxLayout="row" fxLayoutAlign="center center" *ngIf="personOutputData">
     <mat-card *ngFor='let outputData of personOutputData'
               style="margin:10px;"
