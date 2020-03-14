@@ -1,4 +1,3 @@
-import { CounterService } from '../services/counter.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -20,7 +19,6 @@ export class MainPageComponent implements OnInit {
   public counter: number;
 
   public constructor(
-    private counterService: CounterService,
     private fb: FormBuilder,
     private router: Router,
     public translate: TranslateService,
@@ -33,10 +31,7 @@ export class MainPageComponent implements OnInit {
     }
 
   public ngOnInit(): void {
-    this.counterService.getCounter().subscribe(action => {
-      this.counter = action.payload.val().count;
-    });
-    
+
     this.parentForm = this.fb.group({
       items: this.fb.array([ this.createItem() ])
     });
@@ -84,4 +79,3 @@ export class MainPageComponent implements OnInit {
       });
     }
 }
-

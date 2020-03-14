@@ -1,5 +1,5 @@
 import { CounterService } from '../services/counter.service';
-import { Component, OnDestroy, OnInit, OnChanges } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Data } from '../services/data.service';
 import { PersonOutputData } from '../entities/personOutputData';
 import { ActivatedRoute, ParamMap } from '@angular/router';
@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './result-page.component.html',
   styleUrls: ['./result-page.component.css']
 })
-export class ResultPageComponent implements OnInit, OnDestroy, OnChanges {
+export class ResultPageComponent implements OnInit, OnDestroy {
 
   public personOutputData: PersonOutputData[];
   public counter: number;
@@ -30,7 +30,8 @@ export class ResultPageComponent implements OnInit, OnDestroy, OnChanges {
     let localOpearationCounter: number = 0;
     this.dataService.getPersonOutputData().subscribe((data: PersonOutputData[]) => {
       this.personOutputData = data;
-      this.counterService.getCounter().subscribe(action => {
+      // tslint:disable-next-line: no-any
+      this.counterService.getCounter().subscribe((action: any) => {
         this.counter = action.payload.val().count;
       });
     });
@@ -53,20 +54,12 @@ export class ResultPageComponent implements OnInit, OnDestroy, OnChanges {
         localOpearationCounter++;
       });
     });
-    
-    await new Promise(r => setTimeout(r, 2000));
+
+    // tslint:disable-next-line: typedef
+    await new Promise(r => setTimeout(r, 2000)); // fixme dump code
     await this.counterService.increaseCounter(this.counter + localOpearationCounter);
   }
   public ngOnDestroy(): void {
-    console.log('onDestroy');
-
-
     this.dataService.clearPersonalOutputData(); // if go back to Data Page -> old DataPucckerId's no any matter
   }
-
-  public ngOnChanges(changes: import("@angular/core").SimpleChanges): void {
-    console.log('onChanges');
-
-  }
-
 }

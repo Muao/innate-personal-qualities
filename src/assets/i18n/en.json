@@ -35,5 +35,7 @@
   "WORKINGOFF": "Life Working Off",
   "CONTOURS": "Innate Qualities",
   "COMPLEX": "Complexity",
-  "COMPENS": "Compensation"
+  "COMPENS": "Compensation",
+
+  "FOOTER_COUNTER" : "Calculation caunter: "
 }

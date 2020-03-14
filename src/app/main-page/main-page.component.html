@@ -6,7 +6,7 @@
   1. тип личности я- мы по таблице беретца номер эмоционального контура
 
  -->
- <div *ngIf="counter" >counter: {{counter}}</div>
+ <body>
  <div id="group"  [formGroup]="parentForm">
 
  <div formArrayName="items"
@@ -36,3 +36,4 @@
   <a> {{ 'OR' | translate }} </a>
   <button mat-raised-button color="primary" [disabled]="!parentForm.valid" (click)="calculateButtonHandler()">{{ 'CALC' | translate }}</button>
 </div>
+</body>

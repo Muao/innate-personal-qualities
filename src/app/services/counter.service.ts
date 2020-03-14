@@ -1,9 +1,7 @@
 import { Counter } from '../counter.model';
 import { Injectable } from '@angular/core';
-import { AngularFirestore, DocumentChangeAction, DocumentReference } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +14,12 @@ export class CounterService {
   }
 
   // AngularFireObject<Counter>
+  // tslint:disable-next-line: no-any
   public getCounter(): Observable<any> {
     return this.countRef.snapshotChanges();
   }
 
   public increaseCounter(counter: number): void {
-    console.log('increase');
-
-    console.log(counter);
-
   this.countRef.update({ count: (counter) });
 }
 }
